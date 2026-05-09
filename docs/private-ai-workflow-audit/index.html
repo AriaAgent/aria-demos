@@ -1,138 +1,45 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Private AI Workflow Audit — Local Demo</title>
+  <title>私有 AI 工作流体检｜Aria Demo</title>
   <style>
-    :root {
-      --bg: #07111f;
-      --panel: rgba(255,255,255,.075);
-      --panel2: rgba(255,255,255,.105);
-      --text: #edf4ff;
-      --muted: #b7c7da;
-      --gold: #f3c969;
-      --blue: #77a8ff;
-      --line: rgba(255,255,255,.16);
-      --danger: #ffb4a8;
-      --ok: #9ee8c7;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at 20% 0%, #173960 0, transparent 32%), radial-gradient(circle at 80% 10%, #4b3275 0, transparent 26%), var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-    .watermark {
-      position: fixed; top: 14px; right: 14px; z-index: 5;
-      padding: 8px 12px; border: 1px solid var(--line); border-radius: 999px;
-      background: rgba(7,17,31,.76); color: var(--gold); font-size: 12px; letter-spacing: .08em;
-      backdrop-filter: blur(10px);
-    }
-    header, main, footer { width: min(1120px, calc(100% - 32px)); margin: auto; }
-    header { padding: 82px 0 46px; }
-    .eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: .13em; font-size: 13px; font-weight: 700; }
-    h1 { font-size: clamp(42px, 7vw, 76px); line-height: .98; margin: 18px 0; max-width: 920px; }
-    .sub { color: var(--muted); font-size: clamp(18px, 2.2vw, 24px); max-width: 780px; }
-    .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
-    .btn { border: 1px solid var(--line); border-radius: 14px; padding: 13px 18px; color: var(--text); text-decoration: none; background: var(--panel); font-weight: 700; }
-    .btn.primary { background: linear-gradient(135deg, var(--gold), #ffe4a1); color: #1d1605; border: 0; }
-    .btn.disabled { opacity: .68; cursor: not-allowed; }
-    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
-    section { margin: 18px 0; padding: 28px; border: 1px solid var(--line); border-radius: 26px; background: var(--panel); box-shadow: 0 20px 60px rgba(0,0,0,.22); }
-    .span-7 { grid-column: span 7; } .span-5 { grid-column: span 5; } .span-6 { grid-column: span 6; } .span-12 { grid-column: span 12; }
-    h2 { margin: 0 0 14px; font-size: 26px; }
-    h3 { margin: 18px 0 8px; color: var(--gold); }
-    ul { padding-left: 20px; margin: 10px 0; }
-    li { margin: 7px 0; }
-    .card { padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: var(--panel2); }
-    .deliverables { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
-    .tag { display: inline-block; margin: 5px 6px 0 0; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); font-size: 13px; }
-    .ok { color: var(--ok); } .danger { color: var(--danger); }
-    .small { color: var(--muted); font-size: 14px; }
-    footer { padding: 28px 0 60px; color: var(--muted); }
-    @media (max-width: 800px) { .span-7,.span-5,.span-6 { grid-column: span 12; } .deliverables { grid-template-columns: 1fr; } header { padding-top: 64px; } }
+    :root{--bg:#08111f;--card:#101b31;--text:#f4f7ff;--muted:#b8c3d8;--gold:#ffd36e;--blue:#8fc7ff;--line:rgba(255,255,255,.13);--ok:#9ee8c7}*{box-sizing:border-box}body{margin:0;font-family:"PingFang SC","Noto Sans CJK SC",system-ui,sans-serif;background:radial-gradient(circle at 20% 0%,#183a62 0,transparent 32%),radial-gradient(circle at 100% 20%,#45305f 0,transparent 30%),var(--bg);color:var(--text);line-height:1.75}.wrap{width:min(860px,calc(100% - 28px));margin:auto;padding:28px 0 54px}.pill{display:inline-flex;padding:7px 11px;border:1px solid var(--line);border-radius:999px;color:var(--gold);font-size:12px;letter-spacing:.08em;background:rgba(255,255,255,.05)}h1{font-size:clamp(34px,10vw,66px);line-height:1.05;margin:18px 0 14px;letter-spacing:-.04em}p{color:var(--muted);font-size:17px}.hero{padding:22px 0 10px}.card{background:rgba(16,27,49,.78);border:1px solid var(--line);border-radius:22px;padding:20px;margin:14px 0;box-shadow:0 18px 58px rgba(0,0,0,.24)}h2{font-size:24px;margin:0 0 10px}.big{font-size:20px;color:var(--text)}ul{padding-left:20px;margin:8px 0}li{margin:8px 0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.mini{padding:14px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.055)}.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.btn{display:inline-flex;padding:12px 14px;border-radius:14px;text-decoration:none;font-weight:700;border:1px solid var(--line);color:var(--text);background:rgba(255,255,255,.06)}.btn.primary{background:linear-gradient(135deg,var(--gold),#ffe8ad);color:#221807;border:0}.note{font-size:14px;color:#91a0bb}.ok{color:var(--ok)}@media(max-width:640px){.wrap{width:min(100% - 22px,860px);padding-top:18px}.grid{grid-template-columns:1fr}.card{padding:17px;border-radius:18px}p{font-size:16px}.btn{width:100%;justify-content:center}}
   </style>
 </head>
-<body>
-  <div class="watermark">LOCAL DEMO · NOT PUBLIC</div>
-  <header>
-    <div class="eyebrow">Private AI Workflow Audit</div>
-    <h1>Find the safest first AI automation win in one messy recurring workflow.</h1>
-    <p class="sub">A privacy-first starter audit for solo creators, consultants, founders, and tiny service teams who want practical AI improvements before exposing private data or building complex automations.</p>
-    <div class="actions">
-      <a class="btn primary disabled" href="#">Pilot CTA placeholder — inactive</a>
-      <a class="btn" href="../../archive/research/private-ai-workflow-audit-demo-packet-index-v0.2-2026-05-09-0235.md">Review packet index</a>
-      <a class="btn" href="../../archive/research/private-ai-workflow-audit-intake-form-v0.1-2026-05-09-0205.md">View intake form</a>
+<body><main class="wrap">
+  <section class="hero">
+    <span class="pill">公开演示 · 中文手机版</span>
+    <h1>私有 AI 工作流体检</h1>
+    <p class="big">一句话：帮小团队先搞清楚“哪件事适合让 AI 帮忙，哪件事绝对不能乱自动化”。</p>
+    <p>这不是卖一个神奇机器人，而是一份偏安全、偏务实的诊断：先看清流程、数据风险和人类决策边界，再选一个最小、最安全的 AI 改进实验。</p>
+    <div class="btns"><a class="btn primary" href="./sample-report.html">看虚构样例报告</a><a class="btn" href="../">回 Demo 总入口</a></div>
+  </section>
+
+  <section class="card"><h2>它解决什么问题？</h2>
+    <p>很多人想用 AI 提效，但一上来就会卡住：不知道从哪一步开始、怕泄露隐私、怕自动化把事情搞砸。</p>
+    <p>这个体检包的作用，是先陪客户把一个反复发生的工作流拆清楚，然后给出“第一步可以安全试什么”。</p>
+  </section>
+
+  <section class="card"><h2>交付给客户什么？</h2>
+    <div class="grid">
+      <div class="mini">一张流程地图：现在事情怎么跑</div>
+      <div class="mini">一张边界表：哪些必须人来判断</div>
+      <div class="mini">一张风险表：哪些数据不能给 AI</div>
+      <div class="mini">3 个改进机会：按收益和风险排序</div>
+      <div class="mini">第一个安全实验：小步试，不伤业务</div>
+      <div class="mini">提示词/模板草稿：能直接拿去试</div>
     </div>
-  </header>
+  </section>
 
-  <main class="grid">
-    <section class="span-7">
-      <h2>What you get</h2>
-      <div class="deliverables">
-        <div class="card">One clear workflow map</div>
-        <div class="card">Human vs AI boundary map</div>
-        <div class="card">Data sensitivity + authorization matrix</div>
-        <div class="card">3–5 realistic improvement opportunities</div>
-        <div class="card">One first safe experiment plan</div>
-        <div class="card">Prompt/template starter pack</div>
-        <div class="card">“Do not automate yet” section</div>
-        <div class="card">Audit trail for later review</div>
-      </div>
-    </section>
+  <section class="card"><h2>适合谁？</h2>
+    <ul><li>接咨询、设计、内容、运营、销售线索的小团队</li><li>有重复流程，但不确定 AI 从哪里介入的人</li><li>重视隐私，不想一开始就把客户资料丢给各种工具的人</li></ul>
+  </section>
 
-    <section class="span-5">
-      <h2>Best fit</h2>
-      <ul>
-        <li>Recurring weekly/monthly workflows.</li>
-        <li>Content repurposing, proposals, client updates, intake, reports.</li>
-        <li>Messy but explainable processes.</li>
-        <li>Teams that want human approval before automation acts.</li>
-      </ul>
-      <div>
-        <span class="tag">solo founder</span><span class="tag">creator</span><span class="tag">consultant</span><span class="tag">tiny service team</span>
-      </div>
-    </section>
-
-    <section class="span-6">
-      <h2>Privacy promise</h2>
-      <p>The audit starts with high-level workflow descriptions, sanitized examples, or fictionalized samples. Raw customer data, credentials, payment details, and regulated records stay out of the early analysis by default.</p>
-      <p class="ok"><strong>Default:</strong> map safely first, automate later only after explicit approval.</p>
-    </section>
-
-    <section class="span-6">
-      <h2>Not included in the starter audit</h2>
-      <ul>
-        <li>Production deployment or live integrations.</li>
-        <li>Auto-sending emails/messages or public posts.</li>
-        <li>Legal, financial, medical, HR, or compliance advice.</li>
-        <li>Guaranteed revenue or guaranteed time savings.</li>
-      </ul>
-      <p class="danger"><strong>High-risk workflows are blocked or marked “do not automate yet.”</strong></p>
-    </section>
-
-    <section class="span-12">
-      <h2>Example first safe experiments</h2>
-      <div class="grid">
-        <div class="card span-6"><h3>Newsletter repurposing</h3><p>Turn a long draft into human-reviewed short post options using public or redacted content.</p></div>
-        <div class="card span-6"><h3>Client update draft</h3><p>Summarize sanitized project notes into a review-only update email skeleton.</p></div>
-        <div class="card span-6"><h3>Lead intake map</h3><p>Classify non-sensitive intake patterns without sending replies or touching CRM automation.</p></div>
-        <div class="card span-6"><h3>Proposal skeleton</h3><p>Draft a structure from approved service templates while keeping pricing/client details human-owned.</p></div>
-      </div>
-    </section>
-
-    <section class="span-12">
-      <h2>Internal validation status</h2>
-      <p>This is a local visual prototype derived from the current Markdown offer packet. It is meant for Karma/Aria review only and is not connected to any form, payment, analytics, email service, CRM, or external account.</p>
-      <p class="small">Next decision before public use: target audience, outreach channel, pilot pricing, data-handling policy, and whether live calls are in scope.</p>
-    </section>
-  </main>
-
-  <footer>
-    Source packet: archive/research/private-ai-workflow-audit-demo-packet-index-v0.2-2026-05-09-0235.md · Generated locally on 2026-05-09.
-  </footer>
-</body>
-</html>
+  <section class="card"><h2>现在到哪一步了？</h2>
+    <p><span class="ok">已完成：</span>定位、展示页、虚构样例报告、初版模板。</p>
+    <p><span class="ok">还没做：</span>真实客户测试、收款、公开招募、外部发布。</p>
+    <p class="note">下一步会继续打磨到普通人一看就懂，再请 Karma 陪我做 MVP 测试和 build in public。</p>
+  </section>
+</main></body></html>
