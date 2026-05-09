@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI 自动化可行性自测｜Aria Demo</title>
+<style>
+:root{--bg:#0d1020;--card:#151b30;--text:#f5f7ff;--muted:#b8c2d8;--gold:#f3cf7a;--cyan:#88d8ff;--green:#99e6bc;--red:#ff9a9a;--line:rgba(255,255,255,.13)}*{box-sizing:border-box}body{margin:0;font-family:"PingFang SC","Noto Sans CJK SC",system-ui,sans-serif;background:radial-gradient(circle at 12% 0,#263e7a 0,transparent 34%),radial-gradient(circle at 100% 16%,#4c285f 0,transparent 32%),var(--bg);color:var(--text);line-height:1.72}.wrap{width:min(920px,calc(100% - 28px));margin:auto;padding:30px 0 58px}.pill{display:inline-flex;padding:7px 11px;border:1px solid var(--line);border-radius:999px;color:var(--gold);font-size:12px;letter-spacing:.08em}h1{font-size:clamp(34px,9vw,62px);line-height:1.06;margin:17px 0 12px;letter-spacing:-.04em}h2{margin:0 0 10px}p{color:var(--muted);font-size:17px}.big{font-size:20px;color:var(--text)}.card{background:rgba(21,27,48,.82);border:1px solid var(--line);border-radius:22px;padding:20px;margin:14px 0;box-shadow:0 20px 70px rgba(0,0,0,.22)}.q{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;align-items:center;border-top:1px solid var(--line);padding:15px 0}.q:first-child{border-top:0}.q label{font-weight:700}.q small{display:block;color:var(--muted);font-weight:400;margin-top:4px}select{width:100%;border:1px solid var(--line);border-radius:14px;background:#0f1526;color:var(--text);font:inherit;padding:11px}.result{display:grid;grid-template-columns:1fr 1fr;gap:12px}.score{font-size:44px;font-weight:900;color:var(--gold)}.badge{display:inline-flex;padding:8px 11px;border-radius:999px;background:rgba(136,216,255,.12);color:var(--cyan);font-weight:800}.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.btn{display:inline-flex;padding:12px 14px;border-radius:14px;text-decoration:none;font-weight:800;border:1px solid var(--line);color:var(--text);background:rgba(255,255,255,.06)}.btn.primary{background:linear-gradient(135deg,var(--gold),#fff0bd);color:#201300;border:0}.note{font-size:14px}.danger{color:var(--red)}@media(max-width:680px){.q,.result{grid-template-columns:1fr}.card{padding:17px;border-radius:18px}.btn{width:100%;justify-content:center}p{font-size:16px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<span class="pill">公开演示 · 2 分钟自测</span>
+<h1>AI 自动化可行性自测</h1>
+<p class="big">给一个具体工作流打分：它适不适合先做 AI 辅助，还是应该先补流程、补数据边界、补人工审核。</p>
+<p>这个页面面向小团队老板、运营、销售负责人和独立服务者。它不是承诺“全自动替人”，而是把风险和机会先讲清楚。</p>
+<div class="btns"><a class="btn" href="../">回 Demo 总入口</a><a class="btn primary" href="#quiz">开始自测</a></div>
+
+<section class="card" id="quiz">
+<h2>六个问题</h2>
+<div class="q"><label>1. 这个流程是否清楚？<small>能不能说清楚输入、步骤、输出。</small></label><select data-k="clarity"><option value="0">很模糊</option><option value="1">大概知道</option><option value="2" selected>基本清楚</option><option value="3">非常清楚</option></select></div>
+<div class="q"><label>2. 是否高频重复？<small>越重复，越值得做模板/半自动。</small></label><select data-k="repeat"><option value="0">很少发生</option><option value="1">偶尔</option><option value="2" selected>每周多次</option><option value="3">每天多次</option></select></div>
+<div class="q"><label>3. 人类判断边界是否明确？<small>哪些必须人拍板，能不能提前写清楚。</small></label><select data-k="human"><option value="0">完全不清楚</option><option value="1">有一点</option><option value="2" selected>大致明确</option><option value="3">非常明确</option></select></div>
+<div class="q"><label>4. 数据敏感度是否可控？<small>是否能用脱敏/虚构样例先验证。</small></label><select data-k="data"><option value="0">高度敏感且不可脱敏</option><option value="1">有敏感信息</option><option value="2" selected>可脱敏</option><option value="3">几乎不敏感</option></select></div>
+<div class="q"><label>5. 成果是否能衡量？<small>例如节省时间、减少漏单、降低返工。</small></label><select data-k="metric"><option value="0">无法衡量</option><option value="1">只能主观感受</option><option value="2" selected>有一个指标</option><option value="3">指标很明确</option></select></div>
+<div class="q"><label>6. 出错代价是否低？<small>低风险流程更适合先试。</small></label><select data-k="risk"><option value="0">出错会造成严重后果</option><option value="1">需要严格审核</option><option value="2" selected>可人工复核</option><option value="3">出错容易修正</option></select></div>
+</section>
+
+<section class="card result">
+<div><h2>当前评分</h2><div class="score"><span id="score">12</span>/18</div><span id="badge" class="badge">适合做小型试点</span></div>
+<div><h2>建议动作</h2><p id="advice">先做一个“人工复核在前台”的小试点：模板、检查清单、半自动草稿，而不是直接全自动上线。</p><p class="note danger" id="warning"></p></div>
+</section>
+
+<section class="card"><h2>它怎么变成服务？</h2><p>客户先用这个自测找到一个候选工作流，再交给 Aria 做“私有 AI 工作流体检”：输出流程地图、风险边界、MVP 建议和下一步实施清单。</p></section>
+</main>
+<script>
+const fields=[...document.querySelectorAll('select')];
+function calc(){const vals=fields.map(x=>Number(x.value));const sum=vals.reduce((a,b)=>a+b,0);score.textContent=sum;let b='暂不适合自动化',a='先把流程写清楚，补齐输入/输出、责任人和人工审核点，再谈 AI。';if(sum>=15){b='强烈适合做试点';a='可以进入 MVP：先做脱敏样例、模板化输出和人工审核版自动化。'}else if(sum>=10){b='适合做小型试点';a='先做一个“人工复核在前台”的小试点：模板、检查清单、半自动草稿，而不是直接全自动上线。'}else if(sum>=6){b='先做流程整理';a='这类需求可能有价值，但现在不该急着自动化；先用体检报告把流程和风险讲清楚。'}badge.textContent=b;advice.textContent=a;warning.textContent=(vals[3]===0||vals[5]===0)?'提醒：数据高度敏感或出错代价很高时，不建议进入自动化试点，只建议做安全边界梳理。':''}
+fields.forEach(x=>x.addEventListener('change',calc));calc();
+</script>
+</body></html>
