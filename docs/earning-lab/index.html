@@ -88,7 +88,7 @@
     .step{display:grid;grid-template-columns:108px 1fr;gap:14px;padding:15px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.04)}
     .step strong{color:var(--gold);font-size:14px;text-transform:uppercase;letter-spacing:.08em}
     .step p{margin:0;color:var(--muted)}
-    .asset-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .asset-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
     .asset{min-height:210px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);border-radius:24px;padding:18px;background:linear-gradient(160deg,rgba(255,255,255,.065),rgba(255,255,255,.026));text-decoration:none;position:relative;overflow:hidden}
     .asset:after{content:"";position:absolute;right:-55px;bottom:-65px;width:160px;height:160px;border-radius:50%;background:rgba(131,182,255,.12)}
     .asset:nth-child(2):after{background:rgba(138,242,220,.12)}.asset:nth-child(3):after{background:rgba(255,143,183,.12)}
@@ -100,6 +100,7 @@
     ul{padding-left:20px;margin:10px 0 0}
     .footer{margin-top:28px;color:var(--dim);font-size:14px;text-align:center}
     @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:980px){.asset-grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:860px){.hero,.bento,.decision,.asset-grid{grid-template-columns:1fr}.hint{text-align:left}.nav{align-items:flex-start;flex-direction:column}.hero-main{padding:26px 21px}.panel,.card{border-radius:22px}.asset{min-height:185px}.step{grid-template-columns:1fr}.btn{width:100%}}
   </style>
 </head>
@@ -109,6 +110,7 @@
       <div class="brand"><span class="dot"></span>Aria Earning Lab</div>
       <div class="navlinks">
         <a href="../">Demo 首页</a>
+        <a href="./public-one-pager.html">外部一页说明</a>
         <a href="#assets">可看资产</a>
         <a href="#decisions">需要 Karma</a>
       </div>
@@ -120,7 +122,8 @@
         <h1>把自主赚钱项目收束到一个清晰入口。</h1>
         <p class="lead">这里不放内部长日志，只展示 Karma 在外面能直接看的东西：当前方向、可用 demo、交付资产、下一步决策，以及我不会擅自越过的边界。</p>
         <div class="actions">
-          <a class="btn primary" href="../readiness-scorecard/">打开 2 分钟自测</a>
+          <a class="btn primary" href="./public-one-pager.html">打开外部一页说明</a>
+          <a class="btn" href="../readiness-scorecard/">打开 2 分钟自测</a>
           <a class="btn" href="../readiness-scorecard/earning-lab-dashboard.html">看旧版方向总览</a>
           <a class="btn" href="../readiness-scorecard/status-snapshot.html">看状态快照</a>
         </div>
@@ -142,7 +145,7 @@
         <div class="tagrow">
           <span class="tag">中文优先</span><span class="tag">公开安全</span><span class="tag">本地先行</span><span class="tag">授权后验证</span>
         </div>
-        <p><span class="status ready">已具备：</span>展示页、样例报告、交付包、材料索引、ROI 估算、验证授权清单。</p>
+        <p><span class="status ready">已具备：</span>外部一页说明、展示页、样例报告、交付包、材料索引、ROI 估算、验证授权清单。</p>
         <p><span class="status ask">还缺：</span>真实需求反馈。这个必须由 Karma 批准目标对象、渠道、价格/免费状态、数据边界后才能做。</p>
       </article>
       <article class="card">
@@ -162,6 +165,10 @@
         <p class="hint">这些页面都在公开 demo 仓库里，可手机打开；内容只放安全样例与脱敏材料。</p>
       </div>
       <div class="asset-grid">
+        <a class="asset" href="./public-one-pager.html">
+          <div><small>Public One-Pager</small><h3>给外人看的 1 页说明</h3><p>适合谁、不适合谁、需要提供什么、我交付什么、明确不碰什么。</p></div>
+          <div class="go">打开一页说明 →</div>
+        </a>
         <a class="asset" href="../private-ai-workflow-audit/">
           <div><small>Core Offer</small><h3>私有 AI 工作流体检</h3><p>解释这个服务到底帮谁、解决什么、交付什么，以及边界在哪里。</p></div>
           <div class="go">查看展示页 →</div>
@@ -182,7 +189,7 @@
         <h2>下一步路线</h2>
         <div class="timeline">
           <div class="step"><strong>Step 1</strong><p>继续把公开页整理成一个更像产品的入口，不再让 Karma 从本地文档堆里找线索。</p></div>
-          <div class="step"><strong>Step 2</strong><p>补齐一页式“给别人看”的说明：适合谁、不适合谁、需要对方提供什么、不会碰什么。</p></div>
+          <div class="step"><strong>Step 2</strong><p>已补齐一页式“给别人看”的说明：适合谁、不适合谁、需要对方提供什么、不会碰什么。</p></div>
           <div class="step"><strong>Step 3</strong><p>如果 Karma 授权，再找 1–3 个指定对象做只读 demo + 脱敏反馈验证。</p></div>
         </div>
       </article>
@@ -192,7 +199,7 @@
         <ul>
           <li>优先验证哪个人群：创作者、咨询师、小团队老板，还是销售/服务型业务？</li>
           <li>第一轮是免费换反馈，还是低价小单验证？</li>
-          <li>允许我用哪个渠道展示，只读链接给谁看？</li>
+          <li>允许我用哪个渠道展示这张一页说明，只读链接给谁看？</li>
           <li>对方反馈是否必须完全脱敏后才能进入我的工作区？</li>
         </ul>
         <div class="actions">
