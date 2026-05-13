@@ -5,35 +5,58 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>AI 自动化可行性自测｜Aria Demo</title>
 <style>
-:root{--bg:#0d1020;--card:#151b30;--text:#f5f7ff;--muted:#b8c2d8;--gold:#f3cf7a;--cyan:#88d8ff;--green:#99e6bc;--red:#ff9a9a;--line:rgba(255,255,255,.13)}*{box-sizing:border-box}body{margin:0;font-family:"PingFang SC","Noto Sans CJK SC",system-ui,sans-serif;background:radial-gradient(circle at 12% 0,#263e7a 0,transparent 34%),radial-gradient(circle at 100% 16%,#4c285f 0,transparent 32%),var(--bg);color:var(--text);line-height:1.72}.wrap{width:min(920px,calc(100% - 28px));margin:auto;padding:30px 0 58px}.pill{display:inline-flex;padding:7px 11px;border:1px solid var(--line);border-radius:999px;color:var(--gold);font-size:12px;letter-spacing:.08em}h1{font-size:clamp(34px,9vw,62px);line-height:1.06;margin:17px 0 12px;letter-spacing:-.04em}h2{margin:0 0 10px}p{color:var(--muted);font-size:17px}.big{font-size:20px;color:var(--text)}.card{background:rgba(21,27,48,.82);border:1px solid var(--line);border-radius:22px;padding:20px;margin:14px 0;box-shadow:0 20px 70px rgba(0,0,0,.22)}.q{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;align-items:center;border-top:1px solid var(--line);padding:15px 0}.q:first-child{border-top:0}.q label{font-weight:700}.q small{display:block;color:var(--muted);font-weight:400;margin-top:4px}select{width:100%;border:1px solid var(--line);border-radius:14px;background:#0f1526;color:var(--text);font:inherit;padding:11px}.result,.tiers{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tiers{grid-template-columns:repeat(3,1fr)}.tier{padding:16px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.045)}.tier h3{margin:0 0 6px}.price{color:var(--gold);font-size:24px;font-weight:900;margin:8px 0}.tier ul{margin:10px 0 0;padding-left:20px;color:var(--muted)}.score{font-size:44px;font-weight:900;color:var(--gold)}.badge{display:inline-flex;padding:8px 11px;border-radius:999px;background:rgba(136,216,255,.12);color:var(--cyan);font-weight:800}.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.btn{display:inline-flex;padding:12px 14px;border-radius:14px;text-decoration:none;font-weight:800;border:1px solid var(--line);color:var(--text);background:rgba(255,255,255,.06)}.btn.primary{background:linear-gradient(135deg,var(--gold),#fff0bd);color:#201300;border:0}.note{font-size:14px}.danger{color:var(--red)}@media(max-width:680px){.q,.result,.tiers{grid-template-columns:1fr}.card{padding:17px;border-radius:18px}.btn{width:100%;justify-content:center}p{font-size:16px}}
+:root{
+  --bg:#080d1a;--bg2:#0f1830;--panel:#111a2d;--panel2:#16223a;
+  --text:#f7f4ea;--muted:#aebbd0;--soft:#dfe7f5;
+  --gold:#f4ce7a;--cyan:#7edfff;--green:#9ee7bd;--red:#ff9d9d;
+  --line:rgba(255,255,255,.13);--shadow:0 28px 90px rgba(0,0,0,.32);
+  --radius:28px;--max:1120px;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"PingFang SC","Noto Sans CJK SC",system-ui,sans-serif;background:radial-gradient(circle at 10% -8%,rgba(126,223,255,.28),transparent 34%),radial-gradient(circle at 88% 0,rgba(244,206,122,.18),transparent 30%),radial-gradient(circle at 70% 48%,rgba(75,45,104,.28),transparent 34%),linear-gradient(180deg,var(--bg),var(--bg2) 52%,#090d18);color:var(--text);line-height:1.72}a{color:inherit}.wrap{width:min(var(--max),calc(100% - 36px));margin:auto;padding:28px 0 70px}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:clamp(50px,8vw,92px)}.brand{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}.top a{font-size:14px;color:var(--soft);text-decoration:none;border-bottom:1px solid rgba(244,206,122,.35)}.hero{display:grid;grid-template-columns:minmax(0,1.05fr) 380px;gap:clamp(28px,5vw,68px);align-items:end;margin-bottom:clamp(74px,10vw,130px)}.pill{display:inline-flex;padding:8px 12px;border:1px solid rgba(244,206,122,.34);border-radius:999px;color:var(--gold);font-size:12px;letter-spacing:.08em;background:rgba(244,206,122,.07)}h1{font-size:clamp(46px,7.4vw,96px);line-height:.96;margin:18px 0 20px;letter-spacing:-.065em;text-wrap:balance;word-break:keep-all;overflow-wrap:normal}.phrase{display:inline-block;white-space:nowrap}.headline-break{display:block}.lead{font-size:clamp(19px,2.1vw,25px);line-height:1.62;color:var(--soft);max-width:760px;margin:0 0 16px}.sub{max-width:720px;margin:0;color:var(--muted);font-size:16px}.hero-card{border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.035));box-shadow:var(--shadow);padding:26px}.hero-card strong{display:block;font-size:42px;line-height:1;color:var(--gold);margin:8px 0}.hero-card p{margin:0;color:var(--muted)}.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 16px;border-radius:999px;text-decoration:none;font-weight:850;border:1px solid var(--line);color:var(--text);background:rgba(255,255,255,.055)}.btn.primary{background:linear-gradient(135deg,var(--gold),#fff0bd);color:#201300;border:0}.btn.ghost{color:var(--muted)}.section{margin-top:clamp(26px,5vw,46px)}.card{background:rgba(17,26,45,.82);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(22px,3.2vw,34px);box-shadow:0 20px 70px rgba(0,0,0,.2);backdrop-filter:blur(12px)}h2{font-size:clamp(25px,3vw,36px);line-height:1.15;margin:0 0 10px;letter-spacing:-.04em}p{color:var(--muted);font-size:17px}.quiz-head{display:flex;justify-content:space-between;gap:18px;align-items:end;margin-bottom:14px}.quiz-head p{max-width:620px;margin:0}.q{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(210px,.8fr);gap:18px;align-items:center;border-top:1px solid var(--line);padding:18px 0}.q:first-of-type{border-top:0}.q label{font-weight:850;color:var(--soft)}.q small{display:block;color:var(--muted);font-weight:400;margin-top:5px;line-height:1.55}select{width:100%;border:1px solid rgba(255,255,255,.16);border-radius:16px;background:#0d1424;color:var(--text);font:inherit;padding:12px 14px;outline:none}select:focus{border-color:rgba(126,223,255,.7);box-shadow:0 0 0 4px rgba(126,223,255,.1)}.result{display:grid;grid-template-columns:320px 1fr;gap:18px;align-items:stretch}.score-box{border-radius:24px;background:linear-gradient(145deg,rgba(244,206,122,.15),rgba(126,223,255,.08));border:1px solid rgba(244,206,122,.24);padding:24px}.score{font-size:clamp(54px,8vw,78px);font-weight:950;line-height:1;color:var(--gold);letter-spacing:-.06em}.badge{display:inline-flex;margin-top:16px;padding:9px 12px;border-radius:999px;background:rgba(126,223,255,.12);color:var(--cyan);font-weight:900}.advice-box{padding:24px;border-radius:24px;background:rgba(255,255,255,.045);border:1px solid var(--line)}.advice-box p{margin:8px 0 0}.danger{color:var(--red)}.path{display:grid;grid-template-columns:1fr 1fr;gap:16px}.path article,.tier{padding:20px;border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.045)}.path h3,.tier h3{margin:0 0 6px}.path p,.tier p{margin:0}.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}.price{color:var(--gold);font-size:26px;font-weight:950;margin:8px 0}.tier ul{margin:12px 0 0;padding-left:20px;color:var(--muted)}.note{font-size:14px;color:var(--muted)}.footer-nav{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+@media(max-width:860px){.hero,.result,.path,.tiers{grid-template-columns:1fr}.hero{align-items:start}.hero-card{max-width:520px}.top{margin-bottom:46px}.q{grid-template-columns:1fr;gap:10px}.quiz-head{display:block}.wrap{width:min(100% - 28px,var(--max));padding-top:22px}.card{border-radius:22px}.btn{width:100%}}
+@media(max-width:560px){h1{font-size:clamp(42px,13vw,64px);line-height:1;letter-spacing:-.055em}.phrase{white-space:normal}.headline-break{display:inline}.lead{font-size:18px}.hero{margin-bottom:64px}.hero-card strong{font-size:36px}.top{align-items:flex-start;flex-direction:column}.score-box,.advice-box{padding:20px}}
 </style>
 </head>
 <body>
 <main class="wrap">
-<span class="pill">公开演示 · 2 分钟自测</span>
-<h1>AI 自动化可行性自测</h1>
-<p class="big">给一个具体工作流打分：它适不适合先做 AI 辅助，还是应该先补流程、补数据边界、补人工审核。</p>
-<p>这个页面面向小团队老板、运营、销售负责人和独立服务者。它不是承诺“全自动替人”，而是把风险和机会先讲清楚。</p>
-<div class="btns"><a class="btn" href="../">回 Demo 总入口</a><a class="btn primary" href="#quiz">开始自测</a><a class="btn" href="./pilot-brief.html">看试点申请清单</a><a class="btn" href="./roi-calculator.html">算 ROI</a><a class="btn" href="./validation-auth-brief.html">看验证授权清单</a><a class="btn" href="./product-roadmap.html">看产品化路线图</a><a class="btn" href="./earning-lab-dashboard.html">看赚钱方向总览</a><a class="btn" href="./asset-index.html">看材料索引</a></div>
+  <nav class="top" aria-label="页面导航">
+    <div class="brand">Aria Demo · Readiness Scorecard</div>
+    <a href="../">回 Demo 总入口</a>
+  </nav>
 
-<section class="card" id="quiz">
-<h2>六个问题</h2>
-<div class="q"><label>1. 这个流程是否清楚？<small>能不能说清楚输入、步骤、输出。</small></label><select data-k="clarity"><option value="0">很模糊</option><option value="1">大概知道</option><option value="2" selected>基本清楚</option><option value="3">非常清楚</option></select></div>
-<div class="q"><label>2. 是否高频重复？<small>越重复，越值得做模板/半自动。</small></label><select data-k="repeat"><option value="0">很少发生</option><option value="1">偶尔</option><option value="2" selected>每周多次</option><option value="3">每天多次</option></select></div>
-<div class="q"><label>3. 人类判断边界是否明确？<small>哪些必须人拍板，能不能提前写清楚。</small></label><select data-k="human"><option value="0">完全不清楚</option><option value="1">有一点</option><option value="2" selected>大致明确</option><option value="3">非常明确</option></select></div>
-<div class="q"><label>4. 数据敏感度是否可控？<small>是否能用脱敏/虚构样例先验证。</small></label><select data-k="data"><option value="0">高度敏感且不可脱敏</option><option value="1">有敏感信息</option><option value="2" selected>可脱敏</option><option value="3">几乎不敏感</option></select></div>
-<div class="q"><label>5. 成果是否能衡量？<small>例如节省时间、减少漏单、降低返工。</small></label><select data-k="metric"><option value="0">无法衡量</option><option value="1">只能主观感受</option><option value="2" selected>有一个指标</option><option value="3">指标很明确</option></select></div>
-<div class="q"><label>6. 出错代价是否低？<small>低风险流程更适合先试。</small></label><select data-k="risk"><option value="0">出错会造成严重后果</option><option value="1">需要严格审核</option><option value="2" selected>可人工复核</option><option value="3">出错容易修正</option></select></div>
-</section>
+  <header class="hero">
+    <div>
+      <span class="pill">公开演示 · 2 分钟自测</span>
+      <h1><span class="phrase">AI 自动化</span><span class="headline-break"></span><span class="phrase">可行性自测</span></h1>
+      <p class="lead">给一个具体工作流打分：它适不适合先做 AI 辅助，还是应该先补流程、补数据边界、补人工审核。</p>
+      <p class="sub">面向小团队老板、运营、销售负责人和独立服务者。这个工具不承诺“全自动替人”，而是先把风险和机会讲清楚。</p>
+      <div class="btns"><a class="btn primary" href="#quiz">开始自测</a><a class="btn" href="./pilot-brief.html">看试点申请清单</a><a class="btn ghost" href="./roi-calculator.html">算 ROI</a></div>
+    </div>
+    <aside class="hero-card" aria-label="使用说明">
+      <p>你只需要选择一个真实但可脱敏的流程，例如：</p>
+      <strong>线索跟进 / 内容复用 / 内部审核</strong>
+      <p>完成后会得到一个分数、一条建议动作，以及是否该先做安全边界梳理的提醒。</p>
+    </aside>
+  </header>
 
-<section class="card result">
-<div><h2>当前评分</h2><div class="score"><span id="score">12</span>/18</div><span id="badge" class="badge">适合做小型试点</span></div>
-<div><h2>建议动作</h2><p id="advice">先做一个“人工复核在前台”的小试点：模板、检查清单、半自动草稿，而不是直接全自动上线。</p><p class="note danger" id="warning"></p></div>
-</section>
+  <section class="card section" id="quiz">
+    <div class="quiz-head"><h2>六个问题</h2><p>每题 0–3 分。分数越高，越适合从“小型、可复核、可回滚”的 AI 试点开始。</p></div>
+    <div class="q"><label>1. 这个流程是否清楚？<small>能不能说清楚输入、步骤、输出。</small></label><select data-k="clarity"><option value="0">很模糊</option><option value="1">大概知道</option><option value="2" selected>基本清楚</option><option value="3">非常清楚</option></select></div>
+    <div class="q"><label>2. 是否高频重复？<small>越重复，越值得做模板/半自动。</small></label><select data-k="repeat"><option value="0">很少发生</option><option value="1">偶尔</option><option value="2" selected>每周多次</option><option value="3">每天多次</option></select></div>
+    <div class="q"><label>3. 人类判断边界是否明确？<small>哪些必须人拍板，能不能提前写清楚。</small></label><select data-k="human"><option value="0">完全不清楚</option><option value="1">有一点</option><option value="2" selected>大致明确</option><option value="3">非常明确</option></select></div>
+    <div class="q"><label>4. 数据敏感度是否可控？<small>是否能用脱敏/虚构样例先验证。</small></label><select data-k="data"><option value="0">高度敏感且不可脱敏</option><option value="1">有敏感信息</option><option value="2" selected>可脱敏</option><option value="3">几乎不敏感</option></select></div>
+    <div class="q"><label>5. 成果是否能衡量？<small>例如节省时间、减少漏单、降低返工。</small></label><select data-k="metric"><option value="0">无法衡量</option><option value="1">只能主观感受</option><option value="2" selected>有一个指标</option><option value="3">指标很明确</option></select></div>
+    <div class="q"><label>6. 出错代价是否低？<small>低风险流程更适合先试。</small></label><select data-k="risk"><option value="0">出错会造成严重后果</option><option value="1">需要严格审核</option><option value="2" selected>可人工复核</option><option value="3">出错容易修正</option></select></div>
+  </section>
 
-<section class="card"><h2>它怎么变成服务？</h2><p>客户先用这个自测找到一个候选工作流，再交给 Aria 做“私有 AI 工作流体检”：输出流程地图、风险边界、MVP 建议和下一步实施清单。</p></section>
+  <section class="section result" aria-live="polite">
+    <div class="score-box"><h2>当前评分</h2><div class="score"><span id="score">12</span>/18</div><span id="badge" class="badge">适合做小型试点</span></div>
+    <div class="advice-box"><h2>建议动作</h2><p id="advice">先做一个“人工复核在前台”的小试点：模板、检查清单、半自动草稿，而不是直接全自动上线。</p><p class="note danger" id="warning"></p></div>
+  </section>
 
-<section class="card"><h2>三档产品化入口（假设版）</h2><p>先把服务讲成普通人能买的东西：从免费自测，到轻量诊断，再到可执行的试点方案。价格只是内部假设，不代表已经对外销售。</p><div class="tiers"><article class="tier"><h3>免费自测</h3><div class="price">¥0</div><p>适合先判断一个流程值不值得继续看。</p><ul><li>2 分钟评分</li><li>自动给出风险提醒</li><li>引导选择一个候选流程</li></ul></article><article class="tier"><h3>轻量体检</h3><div class="price">¥399–999</div><p>适合小团队确认“先改哪里”。</p><ul><li>1 个流程地图</li><li>3 个风险/机会点</li><li>1 页 MVP 建议</li></ul></article><article class="tier"><h3>深度诊断</h3><div class="price">¥2,999+</div><p>适合准备投入试点的团队。</p><ul><li>多流程优先级排序</li><li>人工审核边界</li><li>实施清单与验收指标</li></ul></article></div><p class="note">下一步若 Karma 授权公开验证，可以先从“免费自测 + 轻量体检候补名单”开始，不直接承诺复杂交付。</p></section>
+  <section class="card section"><h2>它怎么变成服务？</h2><div class="path"><article><h3>先筛选候选流程</h3><p>客户用这个自测排除高风险、低频、边界模糊的需求，避免一开始就做错方向。</p></article><article><h3>再进入工作流体检</h3><p>Aria 输出流程地图、风险边界、MVP 建议和下一步实施清单，让试点变得可控。</p></article></div></section>
+
+  <section class="card section"><h2>三档产品化入口（假设版）</h2><p>先把服务讲成普通人能买的东西：从免费自测，到轻量诊断，再到可执行的试点方案。价格只是内部假设，不代表已经对外销售。</p><div class="tiers"><article class="tier"><h3>免费自测</h3><div class="price">¥0</div><p>适合先判断一个流程值不值得继续看。</p><ul><li>2 分钟评分</li><li>自动给出风险提醒</li><li>引导选择候选流程</li></ul></article><article class="tier"><h3>轻量体检</h3><div class="price">¥399–999</div><p>适合小团队确认“先改哪里”。</p><ul><li>1 个流程地图</li><li>3 个风险/机会点</li><li>1 页 MVP 建议</li></ul></article><article class="tier"><h3>深度诊断</h3><div class="price">¥2,999+</div><p>适合准备投入试点的团队。</p><ul><li>多流程优先级排序</li><li>人工审核边界</li><li>实施清单与验收指标</li></ul></article></div><p class="note">下一步若 Karma 授权公开验证，可以先从“免费自测 + 轻量体检候补名单”开始，不直接承诺复杂交付。</p><div class="footer-nav"><a class="btn" href="./validation-auth-brief.html">验证授权清单</a><a class="btn" href="./product-roadmap.html">产品化路线图</a><a class="btn ghost" href="./asset-index.html">材料索引</a></div></section>
 </main>
 <script>
 const fields=[...document.querySelectorAll('select')];
