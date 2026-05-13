@@ -1,1 +1,160 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>线索接待漏斗体检｜Aria Demo</title><style>:root{--bg:#0b1018;--card:#141c29;--text:#f6f8ff;--muted:#bdc7d7;--green:#a8f0c6;--orange:#ffcf8a;--line:rgba(255,255,255,.13)}*{box-sizing:border-box}body{margin:0;font-family:"PingFang SC","Noto Sans CJK SC",system-ui,sans-serif;background:radial-gradient(circle at 0 0,#173a35 0,transparent 30%),radial-gradient(circle at 100% 0,#4c3520 0,transparent 28%),var(--bg);color:var(--text);line-height:1.76}.wrap{width:min(860px,calc(100% - 28px));margin:auto;padding:28px 0 54px}.pill{display:inline-flex;padding:7px 11px;border:1px solid var(--line);border-radius:999px;color:var(--green);font-size:12px;letter-spacing:.08em}h1{font-size:clamp(34px,10vw,64px);line-height:1.05;margin:18px 0 14px;letter-spacing:-.04em}p{color:var(--muted);font-size:17px}.big{font-size:20px;color:var(--text)}.card{background:rgba(20,28,41,.82);border:1px solid var(--line);border-radius:22px;padding:20px;margin:14px 0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.mini{padding:14px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.055)}.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.btn{display:inline-flex;padding:12px 14px;border-radius:14px;text-decoration:none;font-weight:700;border:1px solid var(--line);color:var(--text);background:rgba(255,255,255,.06)}.btn.primary{background:linear-gradient(135deg,var(--green),#d8ffe9);color:#06180e;border:0}.note{font-size:14px}@media(max-width:640px){.grid{grid-template-columns:1fr}.card{padding:17px;border-radius:18px}.btn{width:100%;justify-content:center}p{font-size:16px}}</style></head><body><main class="wrap"><span class="pill">公开演示 · 中文手机版</span><h1>线索接待漏斗体检</h1><p class="big">一句话：帮有销售线索的人找出“客户从进来到成交前，哪里被漏掉了”。</p><p>比如有人填了表单、加了微信、发了咨询，但后面没人及时跟进、信息没整理、下一步不清楚，最后客户就凉了。</p><div class="btns"><a class="btn primary" href="./sample-output.html">看虚构输出样例</a><a class="btn" href="../">回 Demo 总入口</a></div><section class="card"><h2>它解决什么问题？</h2><p>很多小团队不是没有客户，而是线索进入后没有被好好接住。这个体检会把“客户从哪里来、谁跟进、多久回复、怎么记录、下一步是什么”拆开看。</p></section><section class="card"><h2>会交付什么？</h2><div class="grid"><div class="mini">线索流转地图</div><div class="mini">最容易漏单的 3 个位置</div><div class="mini">跟进话术/记录模板</div><div class="mini">一个低风险自动化建议</div></div></section><section class="card"><h2>为什么可能有商业价值？</h2><p>如果它能帮客户少漏一个意向客户，价值就比一份报告高很多。它也比泛泛的 AI 咨询更具体：直接围绕“别丢线索、别漏跟进、别让客户冷掉”。</p></section><section class="card"><h2>当前状态</h2><p>现在是虚构数据验证版，没有接真实客户，没有收集表单，没有对外销售。下一步是把页面和样例继续讲得更像普通人能买的服务。</p></section></main></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>线索接待漏斗体检｜Aria Demo</title>
+  <meta name="description" content="一个公开安全的线索接待漏斗体检演示页：帮助小团队看清咨询线索从进入、回复、记录到二次跟进之间最容易漏掉的环节。" />
+  <style>
+    :root{
+      --bg:#080d15;
+      --panel:#111a28;
+      --panel-2:#0d1522;
+      --text:#f7f0e5;
+      --muted:#afbacb;
+      --soft:#dcc7a0;
+      --gold:#edc26f;
+      --mint:#9be8c2;
+      --blue:#8fb7ff;
+      --risk:#ffb08f;
+      --line:rgba(247,240,229,.13);
+      --line-strong:rgba(237,194,111,.36);
+      --shadow:0 30px 90px rgba(0,0,0,.36);
+      --radius:30px;
+      --radius-sm:20px;
+      --max:1120px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"PingFang SC","Noto Sans CJK SC",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      line-height:1.76;
+      background:
+        radial-gradient(circle at 10% 3%,rgba(62,126,111,.45) 0,transparent 30%),
+        radial-gradient(circle at 90% 10%,rgba(237,194,111,.20) 0,transparent 28%),
+        radial-gradient(circle at 50% 100%,rgba(143,183,255,.11) 0,transparent 34%),
+        linear-gradient(180deg,#090f18 0%,#070b12 62%,#090d15 100%);
+      min-height:100vh;
+    }
+    body:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:linear-gradient(rgba(255,255,255,.032) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.024) 1px,transparent 1px);
+      background-size:76px 76px;
+      mask-image:linear-gradient(to bottom,rgba(0,0,0,.68),transparent 72%);
+    }
+    a{color:inherit}
+    main{width:min(var(--max),calc(100vw - 40px));margin:0 auto;padding:clamp(28px,6vw,76px) 0 clamp(60px,9vw,116px)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:clamp(48px,7vw,92px);color:var(--muted);font-size:14px}
+    .mark{display:flex;align-items:center;gap:10px;color:var(--text);font-weight:850;letter-spacing:.02em}.mark:before{content:"";width:12px;height:12px;border-radius:999px;background:linear-gradient(135deg,var(--mint),var(--gold));box-shadow:0 0 34px rgba(155,232,194,.36)}
+    .nav-links{display:flex;gap:18px;flex-wrap:wrap;justify-content:flex-end}.nav-links a{text-decoration:none;color:var(--muted)}
+    .hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(310px,.75fr);gap:clamp(26px,5vw,58px);align-items:end;margin-bottom:clamp(78px,10vw,136px)}
+    .eyebrow{margin:0 0 18px;color:var(--mint);font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}
+    h1{margin:0;max-width:860px;font-size:clamp(48px,7.7vw,102px);line-height:.94;letter-spacing:-.065em;text-wrap:balance;word-break:keep-all;overflow-wrap:normal}
+    .phrase{display:inline-block;white-space:nowrap}.headline-break{display:block}
+    .lead{margin:clamp(22px,3vw,30px) 0 0;max-width:660px;color:var(--soft);font-size:clamp(17px,2vw,21px);line-height:1.82}
+    .sublead{margin:16px 0 0;max-width:690px;color:var(--muted);font-size:16px}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 18px;border-radius:999px;text-decoration:none;font-weight:850;border:1px solid rgba(247,240,229,.15);transition:transform .18s ease,border-color .18s ease,background .18s ease}.btn.primary{background:linear-gradient(135deg,var(--mint),#e1ffed);color:#07170f;border-color:transparent;box-shadow:0 18px 46px rgba(155,232,194,.18)}.btn.secondary{color:var(--gold);background:rgba(237,194,111,.08);border-color:rgba(237,194,111,.28)}.btn:hover{transform:translateY(-2px);border-color:rgba(247,240,229,.34)}
+    .hero-card,.panel,.leak,.step,.boundary{border:1px solid var(--line);background:linear-gradient(180deg,rgba(17,26,40,.82),rgba(12,18,30,.68));box-shadow:var(--shadow);backdrop-filter:blur(18px)}
+    .hero-card{position:relative;overflow:hidden;border-radius:var(--radius);padding:28px;border-color:var(--line-strong);background:linear-gradient(145deg,rgba(155,232,194,.12),rgba(237,194,111,.09) 48%,rgba(17,26,40,.76))}.hero-card:before{content:"";position:absolute;inset:-1px -1px auto -1px;height:5px;background:linear-gradient(90deg,var(--mint),var(--gold),var(--blue))}
+    .metric{padding:18px 0;border-bottom:1px solid var(--line)}.metric:last-child{border-bottom:0;padding-bottom:0}.metric strong{display:block;font-size:18px}.metric span{display:block;color:var(--muted);font-size:14px;line-height:1.65;margin-top:4px}
+    .section{margin-top:clamp(68px,9vw,116px)}.section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:24px}h2{margin:0;font-size:clamp(28px,4vw,48px);line-height:1.08;letter-spacing:-.045em;text-wrap:balance;word-break:keep-all}.section-head p{max-width:520px;margin:0;color:var(--muted)}
+    .leaks{display:grid;grid-template-columns:1.08fr .92fr;gap:18px}.leak{border-radius:var(--radius);padding:clamp(24px,4vw,38px)}.leak.featured{border-color:var(--line-strong);min-height:330px;display:flex;flex-direction:column;justify-content:space-between}.kicker{display:inline-flex;width:max-content;margin-bottom:20px;padding:7px 11px;border-radius:999px;background:rgba(237,194,111,.1);border:1px solid var(--line-strong);color:var(--gold);font-size:12px;font-weight:900;letter-spacing:.1em}.leak h3,.step h3,.boundary h3{margin:0 0 10px;font-size:24px;line-height:1.22;letter-spacing:-.025em}.leak p,.step p,.boundary p{margin:0;color:var(--muted)}
+    .deliverables{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.step{border-radius:var(--radius-sm);padding:22px;min-height:210px}.num{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px;background:rgba(155,232,194,.1);border:1px solid rgba(155,232,194,.32);color:var(--mint);font-weight:900}.step small{display:block;margin-top:14px;color:#8190a8;line-height:1.6}
+    .boundaries{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.boundary{border-radius:var(--radius-sm);padding:24px}.boundary.safe{background:linear-gradient(180deg,rgba(155,232,194,.09),rgba(17,26,40,.64))}.boundary.risk{background:linear-gradient(180deg,rgba(255,176,143,.10),rgba(17,26,40,.64))}.boundary .tag{display:inline-block;margin-bottom:16px;color:var(--mint);font-size:12px;font-weight:900;letter-spacing:.12em}.boundary.risk .tag{color:var(--risk)}
+    .final{margin-top:clamp(70px,10vw,124px);border-top:1px solid var(--line);padding-top:28px;display:flex;align-items:flex-start;justify-content:space-between;gap:24px;color:#8792a7;font-size:14px}.final strong{display:block;color:var(--soft);font-size:16px;margin-bottom:5px}.final .actions{margin-top:0;flex-shrink:0}
+    @media(max-width:980px){.deliverables{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:900px){main{width:min(100% - 28px,var(--max))}.hero,.leaks,.boundaries{grid-template-columns:1fr}.hero{align-items:start}.section-head{display:block}.section-head p{margin-top:12px}.hero-card{padding:22px}.step{min-height:auto}.nav{align-items:flex-start}.nav-links{gap:10px;font-size:13px}.final{display:block}.final .actions{margin-top:20px}}
+    @media(max-width:560px){main{width:min(100% - 22px,var(--max));padding-top:22px}.nav-links{display:none}h1{font-size:clamp(42px,13vw,64px);line-height:.98;letter-spacing:-.055em}.phrase{white-space:normal}.headline-break{display:inline}.lead{font-size:16px}.actions{display:grid}.btn{width:100%}.section{margin-top:58px}.deliverables{grid-template-columns:1fr}.leak,.step,.boundary{padding:20px;border-radius:18px}}
+  </style>
+</head>
+<body>
+  <main>
+    <nav class="nav" aria-label="页面导航">
+      <div class="mark">Aria Lead Intake Audit</div>
+      <div class="nav-links">
+        <a href="#leaks">漏点</a>
+        <a href="#deliverables">交付</a>
+        <a href="#boundaries">边界</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <p class="eyebrow">LEAD INTAKE FUNNEL AUDIT</p>
+        <h1><span class="phrase">客户不是</span><span class="phrase">突然消失，</span><span class="headline-break"></span><span class="phrase">而是在流程里</span><span class="phrase">慢慢变冷。</span></h1>
+        <p class="lead">给小团队的一份线索接待体检：把咨询从进入、回复、记录、二次跟进到预约成交前的路径画清楚，找出最容易漏单的 3 个位置。</p>
+        <p class="sublead">它不承诺“自动成交”。它先帮团队看见：谁该接、多久回、下一步发什么、哪些线索已经超过 24 小时没人照看。</p>
+        <div class="actions">
+          <a class="btn primary" href="./sample-output.html">看虚构输出样例</a>
+          <a class="btn secondary" href="../">回 Demo 总入口</a>
+        </div>
+      </div>
+      <aside class="hero-card" aria-label="线索体检重点">
+        <div class="metric"><strong>01｜入口统一</strong><span>把表单、私信、微信或邮件里的咨询先变成一张看得见的清单。</span></div>
+        <div class="metric"><strong>02｜响应节奏</strong><span>识别“没人看到”“看到了但没跟”“跟了但没记录”的断点。</span></div>
+        <div class="metric"><strong>03｜下一步动作</strong><span>给每个线索一个状态和下一步，而不是靠临时记忆救场。</span></div>
+      </aside>
+    </section>
+
+    <section class="section" id="leaks">
+      <div class="section-head">
+        <h2>漏单通常不是一个大洞，<br>而是几处小小的延迟。</h2>
+        <p>公开 demo 使用完全虚构场景，不接入表单，不处理真实客户资料，只展示方法与交付形态。</p>
+      </div>
+      <div class="leaks">
+        <article class="leak featured">
+          <div>
+            <span class="kicker">核心判断</span>
+            <h3>线索进入后，团队最需要的不是更多工具，而是一套稳定接住人的动作。</h3>
+            <p>很多团队已经有客户咨询，却缺少统一记录、回复时限和二次跟进提醒。体检会先把现状拆开，再建议一个低风险的小改进。</p>
+          </div>
+          <div class="actions"><a class="btn secondary" href="../readiness-scorecard/">先做 2 分钟自测</a></div>
+        </article>
+        <article class="leak">
+          <span class="kicker">典型信号</span>
+          <h3>如果你经常想不起“这个客户后来怎么样了”，这里就有价值。</h3>
+          <p>特别适合课程顾问、工作室、咨询服务、B2B 小团队这类靠人工接待推进意向的场景。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="deliverables">
+      <div class="section-head">
+        <h2>交付物围绕一件事：<br>让下一步不再悬空。</h2>
+        <p>比起厚报告，优先给团队可复制、可回看、可执行的轻量材料。</p>
+      </div>
+      <div class="deliverables">
+        <article class="step"><div class="num">1</div><h3>线索流转地图</h3><p>画清客户从哪里来、谁接手、记录在哪里、多久进入下一步。</p><small>输出：一张漏斗路径图。</small></article>
+        <article class="step"><div class="num">2</div><h3>3 个漏点</h3><p>定位最容易造成冷场、重复沟通或遗忘跟进的位置。</p><small>输出：优先级清单。</small></article>
+        <article class="step"><div class="num">3</div><h3>跟进模板</h3><p>把“下一条该发什么”变成可调整的草稿，而不是临场发挥。</p><small>输出：话术与记录字段。</small></article>
+        <article class="step"><div class="num">4</div><h3>安全自动化</h3><p>只推荐一个低风险动作：提醒、摘要、状态更新或待办清单。</p><small>输出：可回退的小实验。</small></article>
+      </div>
+    </section>
+
+    <section class="section" id="boundaries">
+      <div class="section-head">
+        <h2>AI 可以帮忙接住流程，<br>但不该替人乱承诺。</h2>
+        <p>这类服务最重要的边界，是让 AI 做整理与提醒，把价格、承诺、最终判断留给人。</p>
+      </div>
+      <div class="boundaries">
+        <article class="boundary safe"><span class="tag">可以试</span><h3>摘要与状态</h3><p>把咨询内容整理成客户需求、预算、关注点和下一步待办。</p></article>
+        <article class="boundary safe"><span class="tag">谨慎试</span><h3>回复草稿</h3><p>AI 可以起草跟进话术，但发送前必须由人确认语气、价格和承诺。</p></article>
+        <article class="boundary risk"><span class="tag">不建议</span><h3>自动成交承诺</h3><p>不让 AI 直接承诺优惠、名额、效果、合同条款或替代销售判断。</p></article>
+      </div>
+    </section>
+
+    <footer class="final">
+      <div>
+        <strong>当前状态</strong>
+        <span>这是公开安全的虚构数据验证版：没有真实客户、没有表单收集、没有对外收费承诺。下一步可继续打磨样例报告页。</span>
+      </div>
+      <div class="actions"><a class="btn primary" href="./sample-output.html">打开样例输出</a></div>
+    </footer>
+  </main>
+</body>
+</html>
