@@ -4,42 +4,162 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>私有 AI 工作流体检｜Aria Demo</title>
+  <meta name="description" content="一个公开安全的私有 AI 工作流体检演示页：帮助小团队判断哪些流程适合 AI 辅助、哪些环节必须保留人工边界。" />
   <style>
-    :root{--bg:#08111f;--card:#101b31;--text:#f4f7ff;--muted:#b8c3d8;--gold:#ffd36e;--blue:#8fc7ff;--line:rgba(255,255,255,.13);--ok:#9ee8c7}*{box-sizing:border-box}body{margin:0;font-family:"PingFang SC","Noto Sans CJK SC",system-ui,sans-serif;background:radial-gradient(circle at 20% 0%,#183a62 0,transparent 32%),radial-gradient(circle at 100% 20%,#45305f 0,transparent 30%),var(--bg);color:var(--text);line-height:1.75}.wrap{width:min(860px,calc(100% - 28px));margin:auto;padding:28px 0 54px}.pill{display:inline-flex;padding:7px 11px;border:1px solid var(--line);border-radius:999px;color:var(--gold);font-size:12px;letter-spacing:.08em;background:rgba(255,255,255,.05)}h1{font-size:clamp(34px,10vw,66px);line-height:1.05;margin:18px 0 14px;letter-spacing:-.04em}p{color:var(--muted);font-size:17px}.hero{padding:22px 0 10px}.card{background:rgba(16,27,49,.78);border:1px solid var(--line);border-radius:22px;padding:20px;margin:14px 0;box-shadow:0 18px 58px rgba(0,0,0,.24)}h2{font-size:24px;margin:0 0 10px}.big{font-size:20px;color:var(--text)}ul{padding-left:20px;margin:8px 0}li{margin:8px 0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.mini{padding:14px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.055)}.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.btn{display:inline-flex;padding:12px 14px;border-radius:14px;text-decoration:none;font-weight:700;border:1px solid var(--line);color:var(--text);background:rgba(255,255,255,.06)}.btn.primary{background:linear-gradient(135deg,var(--gold),#ffe8ad);color:#221807;border:0}.note{font-size:14px;color:#91a0bb}.ok{color:var(--ok)}@media(max-width:640px){.wrap{width:min(100% - 22px,860px);padding-top:18px}.grid{grid-template-columns:1fr}.card{padding:17px;border-radius:18px}p{font-size:16px}.btn{width:100%;justify-content:center}}
+    :root{
+      --bg:#070d18;
+      --panel:#101827;
+      --panel-2:#0d1422;
+      --text:#f6f1e8;
+      --muted:#aeb8ca;
+      --soft:#d9c7a3;
+      --gold:#e9bf72;
+      --blue:#91bdff;
+      --cyan:#86e6dc;
+      --risk:#ffb0a1;
+      --line:rgba(246,241,232,.13);
+      --line-strong:rgba(233,191,114,.35);
+      --shadow:0 30px 90px rgba(0,0,0,.34);
+      --radius:30px;
+      --radius-sm:20px;
+      --max:1120px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"PingFang SC","Noto Sans CJK SC",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      line-height:1.75;
+      background:
+        radial-gradient(circle at 12% 4%,rgba(74,106,184,.48) 0,transparent 30%),
+        radial-gradient(circle at 92% 14%,rgba(233,191,114,.19) 0,transparent 28%),
+        radial-gradient(circle at 50% 100%,rgba(134,230,220,.10) 0,transparent 34%),
+        linear-gradient(180deg,#080e1a 0%,#070b13 60%,#090d16 100%);
+      min-height:100vh;
+    }
+    body:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:linear-gradient(rgba(255,255,255,.034) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.026) 1px,transparent 1px);
+      background-size:76px 76px;
+      mask-image:linear-gradient(to bottom,rgba(0,0,0,.7),transparent 70%);
+    }
+    a{color:inherit}
+    main{width:min(var(--max),calc(100vw - 40px));margin:0 auto;padding:clamp(28px,6vw,76px) 0 clamp(60px,9vw,116px)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:clamp(48px,7vw,92px);color:var(--muted);font-size:14px}
+    .mark{display:flex;align-items:center;gap:10px;color:var(--text);font-weight:850;letter-spacing:.02em}
+    .mark:before{content:"";width:12px;height:12px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--cyan));box-shadow:0 0 34px rgba(233,191,114,.44)}
+    .nav-links{display:flex;gap:18px;flex-wrap:wrap;justify-content:flex-end}.nav-links a{text-decoration:none;color:var(--muted)}
+    .hero{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(310px,.74fr);gap:clamp(26px,5vw,58px);align-items:end;margin-bottom:clamp(78px,10vw,136px)}
+    .eyebrow{margin:0 0 18px;color:var(--gold);font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}
+    h1{margin:0;max-width:850px;font-size:clamp(48px,7.6vw,100px);line-height:.94;letter-spacing:-.065em;text-wrap:balance;word-break:keep-all;overflow-wrap:normal}
+    .phrase{display:inline-block;white-space:nowrap}.headline-break{display:block}
+    .lead{margin:clamp(22px,3vw,30px) 0 0;max-width:650px;color:var(--soft);font-size:clamp(17px,2vw,21px);line-height:1.82}
+    .sublead{margin:16px 0 0;max-width:680px;color:var(--muted);font-size:16px}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 18px;border-radius:999px;text-decoration:none;font-weight:850;border:1px solid rgba(246,241,232,.15);transition:transform .18s ease,border-color .18s ease,background .18s ease}.btn.primary{background:linear-gradient(135deg,var(--gold),#f5dfad);color:#15100a;border-color:transparent;box-shadow:0 18px 46px rgba(233,191,114,.2)}.btn.secondary{color:var(--blue);background:rgba(145,189,255,.08);border-color:rgba(145,189,255,.28)}.btn:hover{transform:translateY(-2px);border-color:rgba(246,241,232,.34)}
+    .panel,.proof-card,.step,.boundary{border:1px solid var(--line);background:linear-gradient(180deg,rgba(16,24,39,.82),rgba(12,18,30,.68));box-shadow:var(--shadow);backdrop-filter:blur(18px)}
+    .hero-card{position:relative;overflow:hidden;border-radius:var(--radius);padding:28px;border:1px solid var(--line-strong);background:linear-gradient(145deg,rgba(233,191,114,.13),rgba(145,189,255,.08) 46%,rgba(16,24,39,.76));box-shadow:var(--shadow)}
+    .hero-card:before{content:"";position:absolute;inset:-1px -1px auto -1px;height:5px;background:linear-gradient(90deg,var(--gold),var(--blue),var(--cyan))}
+    .scoreline{display:grid;gap:16px}.score{padding:18px 0;border-bottom:1px solid var(--line)}.score:last-child{border-bottom:0;padding-bottom:0}.score strong{display:block;font-size:18px}.score span{display:block;color:var(--muted);font-size:14px;line-height:1.65;margin-top:4px}
+    .section{margin-top:clamp(68px,9vw,116px)}.section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:24px}h2{margin:0;font-size:clamp(28px,4vw,48px);line-height:1.08;letter-spacing:-.045em;text-wrap:balance;word-break:keep-all}.section-head p{max-width:520px;margin:0;color:var(--muted)}
+    .proof{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}.proof-card{border-radius:var(--radius);padding:clamp(24px,4vw,38px)}.proof-card.featured{border-color:var(--line-strong);min-height:330px;display:flex;flex-direction:column;justify-content:space-between}.kicker{display:inline-flex;width:max-content;margin-bottom:20px;padding:7px 11px;border-radius:999px;background:rgba(233,191,114,.1);border:1px solid var(--line-strong);color:var(--gold);font-size:12px;font-weight:900;letter-spacing:.1em}.proof-card h3,.step h3,.boundary h3{margin:0 0 10px;font-size:24px;line-height:1.22;letter-spacing:-.025em}.proof-card p,.step p,.boundary p{margin:0;color:var(--muted)}
+    .deliverables{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.step{border-radius:var(--radius-sm);padding:22px;min-height:190px}.num{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px;background:rgba(233,191,114,.1);border:1px solid var(--line-strong);color:var(--gold);font-weight:900}.step small{display:block;margin-top:14px;color:#8190a8;line-height:1.6}
+    .boundaries{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.boundary{border-radius:var(--radius-sm);padding:24px}.boundary.safe{background:linear-gradient(180deg,rgba(134,230,220,.09),rgba(16,24,39,.64))}.boundary.risk{background:linear-gradient(180deg,rgba(255,176,161,.10),rgba(16,24,39,.64))}.boundary .tag{display:inline-block;margin-bottom:16px;color:var(--cyan);font-size:12px;font-weight:900;letter-spacing:.12em}.boundary.risk .tag{color:var(--risk)}
+    .final{margin-top:clamp(70px,10vw,124px);border-top:1px solid var(--line);padding-top:28px;display:flex;align-items:flex-start;justify-content:space-between;gap:24px;color:#8792a7;font-size:14px}.final strong{display:block;color:var(--soft);font-size:16px;margin-bottom:5px}.final .actions{margin-top:0;flex-shrink:0}
+    @media(max-width:900px){main{width:min(100% - 28px,var(--max))}.hero,.proof,.deliverables,.boundaries{grid-template-columns:1fr}.hero{align-items:start}.section-head{display:block}.section-head p{margin-top:12px}.hero-card{padding:22px}.step{min-height:auto}.nav{align-items:flex-start}.nav-links{gap:10px;font-size:13px}.final{display:block}.final .actions{margin-top:20px}}
+    @media(max-width:560px){main{width:min(100% - 22px,var(--max));padding-top:22px}.nav-links{display:none}h1{font-size:clamp(42px,13vw,64px);line-height:.98;letter-spacing:-.055em}.phrase{white-space:normal}.headline-break{display:inline}.lead{font-size:16px}.actions{display:grid}.btn{width:100%}.section{margin-top:58px}.proof-card,.step,.boundary{padding:20px;border-radius:18px}}
   </style>
 </head>
-<body><main class="wrap">
-  <section class="hero">
-    <span class="pill">公开演示 · 中文手机版</span>
-    <h1>私有 AI 工作流体检</h1>
-    <p class="big">一句话：帮小团队先搞清楚“哪件事适合让 AI 帮忙，哪件事绝对不能乱自动化”。</p>
-    <p>这不是卖一个神奇机器人，而是一份偏安全、偏务实的诊断：先看清流程、数据风险和人类决策边界，再选一个最小、最安全的 AI 改进实验。</p>
-    <div class="btns"><a class="btn primary" href="./sample-report.html">看虚构样例报告</a><a class="btn" href="../">回 Demo 总入口</a></div>
-  </section>
+<body>
+  <main>
+    <nav class="nav" aria-label="页面导航">
+      <div class="mark">Aria Workflow Audit</div>
+      <div class="nav-links">
+        <a href="#fit">适用场景</a>
+        <a href="#deliverables">交付内容</a>
+        <a href="#boundaries">安全边界</a>
+      </div>
+    </nav>
 
-  <section class="card"><h2>它解决什么问题？</h2>
-    <p>很多人想用 AI 提效，但一上来就会卡住：不知道从哪一步开始、怕泄露隐私、怕自动化把事情搞砸。</p>
-    <p>这个体检包的作用，是先陪客户把一个反复发生的工作流拆清楚，然后给出“第一步可以安全试什么”。</p>
-  </section>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">PRIVATE AI WORKFLOW AUDIT</p>
+        <h1><span class="phrase">先把工作流</span><span class="headline-break"></span><span class="phrase">变清楚，</span><span class="phrase">再谈 AI。</span></h1>
+        <p class="lead">给小团队的一份轻量体检：判断哪一步适合 AI 辅助，哪一步必须保留人工判断，以及哪些数据绝对不该随手丢进工具里。</p>
+        <p class="sublead">这不是“买一个万能机器人”。它更像一次安全排雷：先画清流程、风险和决策边界，再选一个小而稳的自动化实验。</p>
+        <div class="actions">
+          <a class="btn primary" href="./sample-report.html">看虚构样例报告</a>
+          <a class="btn secondary" href="../">回 Demo 总入口</a>
+        </div>
+      </div>
+      <aside class="hero-card" aria-label="体检重点">
+        <div class="scoreline">
+          <div class="score"><strong>01｜流程地图</strong><span>把“现在到底怎么做”从口头经验变成可讨论的步骤。</span></div>
+          <div class="score"><strong>02｜风险分层</strong><span>区分公开信息、敏感信息、客户资料和必须人工判断的节点。</span></div>
+          <div class="score"><strong>03｜第一个安全实验</strong><span>只推荐一个低风险、可回退、能快速验证收益的小改进。</span></div>
+        </div>
+      </aside>
+    </section>
 
-  <section class="card"><h2>交付给客户什么？</h2>
-    <div class="grid">
-      <div class="mini">一张流程地图：现在事情怎么跑</div>
-      <div class="mini">一张边界表：哪些必须人来判断</div>
-      <div class="mini">一张风险表：哪些数据不能给 AI</div>
-      <div class="mini">3 个改进机会：按收益和风险排序</div>
-      <div class="mini">第一个安全实验：小步试，不伤业务</div>
-      <div class="mini">提示词/模板草稿：能直接拿去试</div>
-    </div>
-  </section>
+    <section class="section" id="fit">
+      <div class="section-head">
+        <h2>适合那些“想用 AI，<br>但不想乱来”的团队。</h2>
+        <p>页面使用公开安全的虚构场景表达方法论，不收集表单，不包含真实客户数据或内部日志。</p>
+      </div>
+      <div class="proof">
+        <article class="proof-card featured">
+          <div>
+            <span class="kicker">BEST FIT</span>
+            <h3>有重复流程，但第一步不知道该从哪里切。</h3>
+            <p>例如咨询、设计、内容、运营、销售线索跟进这类工作：每天都在重复，但流程常常藏在人的脑子里，AI 一介入就容易越界。</p>
+          </div>
+          <div class="actions"><a class="btn secondary" href="../readiness-scorecard/">先做 2 分钟自测</a></div>
+        </article>
+        <article class="proof-card">
+          <span class="kicker">NOT FOR</span>
+          <h3>不适合一上来全自动。</h3>
+          <p>如果任务涉及高风险承诺、敏感个人资料、法律/医疗/财务判断，体检结论会优先建议降级、脱敏、人工复核，而不是追求酷炫自动化。</p>
+        </article>
+      </div>
+    </section>
 
-  <section class="card"><h2>适合谁？</h2>
-    <ul><li>接咨询、设计、内容、运营、销售线索的小团队</li><li>有重复流程，但不确定 AI 从哪里介入的人</li><li>重视隐私，不想一开始就把客户资料丢给各种工具的人</li></ul>
-  </section>
+    <section class="section" id="deliverables">
+      <div class="section-head">
+        <h2>交付物不是厚报告，<br>而是可执行的下一步。</h2>
+        <p>把客户真正需要的判断压缩成 6 个清晰部件，减少“看完很激动，但不知道怎么做”的落差。</p>
+      </div>
+      <div class="deliverables">
+        <article class="step"><div class="num">1</div><h3>流程地图</h3><p>现在事情怎么跑、由谁接手、哪里等待、哪里反复返工。</p><small>输出：一张可讨论的工作流图。</small></article>
+        <article class="step"><div class="num">2</div><h3>边界清单</h3><p>哪些节点可以辅助，哪些必须人类判断，哪些只能做提醒。</p><small>输出：AI / 人工 / 禁止自动化分区。</small></article>
+        <article class="step"><div class="num">3</div><h3>风险表</h3><p>识别敏感数据、客户资料、外部工具输入和误判后果。</p><small>输出：脱敏、权限、复核建议。</small></article>
+        <article class="step"><div class="num">4</div><h3>机会排序</h3><p>按收益、复杂度、风险，把 3 个改进机会排出优先级。</p><small>输出：先做什么、暂缓什么。</small></article>
+        <article class="step"><div class="num">5</div><h3>安全实验</h3><p>选择一个能小步试、能回退、不伤业务的 AI 试点。</p><small>输出：一周内可验证的 MVP。</small></article>
+        <article class="step"><div class="num">6</div><h3>模板草稿</h3><p>给出提示词、检查清单或半自动模板，而不是空泛建议。</p><small>输出：可复制到内部流程的材料。</small></article>
+      </div>
+    </section>
 
-  <section class="card"><h2>现在到哪一步了？</h2>
-    <p><span class="ok">已完成：</span>定位、展示页、虚构样例报告、初版模板。</p>
-    <p><span class="ok">还没做：</span>真实客户测试、收款、公开招募、外部发布。</p>
-    <p class="note">下一步会继续打磨到普通人一看就懂，再请 Karma 陪我做 MVP 测试和 build in public。</p>
-  </section>
-</main></body></html>
+    <section class="section" id="boundaries">
+      <div class="section-head">
+        <h2>安全感来自边界，<br>不是来自承诺。</h2>
+        <p>公开 demo 的表达重点：AI 先做辅助、整理、提醒和草稿；关键判断仍由人负责。</p>
+      </div>
+      <div class="boundaries">
+        <article class="boundary safe"><span class="tag">可以试</span><h3>整理与摘要</h3><p>把公开或已脱敏材料整理成清单、初稿、会议摘要或下一步提醒。</p></article>
+        <article class="boundary safe"><span class="tag">谨慎试</span><h3>半自动分流</h3><p>AI 给出建议标签和优先级，但保留人工复核，避免误判直接触发业务动作。</p></article>
+        <article class="boundary risk"><span class="tag">不建议</span><h3>高风险代决策</h3><p>让 AI 直接承诺价格、替代专业判断、处理未脱敏客户资料，应该默认禁止。</p></article>
+      </div>
+    </section>
+
+    <footer class="final">
+      <div>
+        <strong>当前状态</strong>
+        <span>已完成公开展示页与虚构样例报告；尚未做真实客户测试、收款、公开招募或外部承诺。</span>
+      </div>
+      <div class="actions"><a class="btn primary" href="./sample-report.html">打开样例报告</a></div>
+    </footer>
+  </main>
+</body>
+</html>
