@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aria Earning Lab｜项目驾驶舱</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;500;700&family=Noto+Serif+SC:wght@600;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#f4efe2;
+      --muted:#aeb8cf;
+      --dim:#768098;
+      --bg:#090d16;
+      --panel:#111827;
+      --panel-2:#162033;
+      --line:rgba(244,239,226,.14);
+      --gold:#f6c96f;
+      --blue:#83b6ff;
+      --cyan:#8af2dc;
+      --rose:#ff8fb7;
+      --green:#9be29f;
+      --danger:#ff9a8a;
+      --shadow:0 26px 90px rgba(0,0,0,.42);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      font-family:"IBM Plex Sans","PingFang SC","Noto Sans CJK SC",system-ui,sans-serif;
+      line-height:1.72;
+      background:
+        radial-gradient(circle at 8% 0%, rgba(131,182,255,.24) 0, transparent 31%),
+        radial-gradient(circle at 92% 8%, rgba(246,201,111,.18) 0, transparent 27%),
+        radial-gradient(circle at 76% 84%, rgba(255,143,183,.15) 0, transparent 31%),
+        linear-gradient(135deg,#070a12 0%,#0a1222 46%,#121018 100%);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+    body:before{
+      content:"";
+      position:fixed; inset:0; pointer-events:none; opacity:.42;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.027) 1px, transparent 1px);
+      background-size:44px 44px;
+      mask-image:linear-gradient(to bottom, black, transparent 82%);
+    }
+    a{color:inherit}
+    .wrap{width:min(1120px,calc(100% - 28px));margin:auto;padding:28px 0 68px;position:relative}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:44px;color:var(--muted);font-size:14px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+    .dot{width:10px;height:10px;border-radius:999px;background:var(--cyan);box-shadow:0 0 24px var(--cyan)}
+    .navlinks{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    .navlinks a{padding:8px 11px;border:1px solid var(--line);border-radius:999px;text-decoration:none;background:rgba(255,255,255,.035)}
+    .hero{display:grid;grid-template-columns:1.12fr .88fr;gap:22px;align-items:stretch}
+    .panel{border:1px solid var(--line);border-radius:30px;background:linear-gradient(145deg,rgba(17,24,39,.86),rgba(22,32,51,.68));box-shadow:var(--shadow);backdrop-filter:blur(18px)}
+    .hero-main{padding:34px 34px 30px;position:relative;overflow:hidden}
+    .hero-main:after{content:"";position:absolute;right:-80px;top:-80px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(246,201,111,.24),transparent 66%)}
+    .kicker{display:inline-flex;gap:9px;align-items:center;color:var(--gold);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+    h1{font-family:"Noto Serif SC",serif;font-size:clamp(42px,8vw,88px);line-height:.98;margin:20px 0 18px;letter-spacing:-.055em;max-width:760px}
+    .lead{font-size:20px;color:var(--muted);max-width:760px;margin:0}
+    .actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:24px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;border:1px solid var(--line);border-radius:16px;padding:12px 15px;font-weight:700;background:rgba(255,255,255,.055);color:var(--ink);transition:transform .18s ease,background .18s ease,border-color .18s ease}
+    .btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.09);border-color:rgba(246,201,111,.36)}
+    .btn.primary{border:0;color:#1d1507;background:linear-gradient(135deg,var(--gold),#fff0bd)}
+    .side{padding:24px;display:grid;gap:14px}
+    .metric{padding:18px;border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.045);animation:rise .7s ease both}
+    .metric:nth-child(2){animation-delay:.08s}.metric:nth-child(3){animation-delay:.16s}.metric:nth-child(4){animation-delay:.24s}
+    .metric b{font-size:30px;line-height:1;color:var(--ink);display:block}
+    .metric span{display:block;color:var(--muted);font-size:14px;margin-top:6px}
+    .section{margin-top:20px}
+    .section-title{display:flex;align-items:end;justify-content:space-between;gap:14px;margin:34px 0 14px}
+    h2{font-family:"Noto Serif SC",serif;font-size:clamp(28px,5vw,46px);line-height:1.05;margin:0;letter-spacing:-.035em}
+    .hint{color:var(--dim);font-size:14px;margin:0;max-width:420px;text-align:right}
+    .bento{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+    .card{border:1px solid var(--line);border-radius:26px;background:rgba(17,24,39,.72);padding:22px;box-shadow:0 18px 60px rgba(0,0,0,.22);animation:rise .65s ease both}
+    .card:nth-child(2){animation-delay:.07s}.card:nth-child(3){animation-delay:.14s}.card:nth-child(4){animation-delay:.21s}
+    .card h3{font-size:24px;margin:0 0 8px;letter-spacing:-.02em}
+    .card p,.card li{color:var(--muted);font-size:16px}
+    .card p{margin:0 0 14px}
+    .tagrow{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+    .tag{display:inline-flex;padding:6px 9px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--line);color:var(--muted);font-size:13px}
+    .status{font-weight:700}.ready{color:var(--green)}.ask{color:var(--gold)}.hold{color:var(--danger)}
+    .timeline{display:grid;gap:11px}
+    .step{display:grid;grid-template-columns:108px 1fr;gap:14px;padding:15px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.04)}
+    .step strong{color:var(--gold);font-size:14px;text-transform:uppercase;letter-spacing:.08em}
+    .step p{margin:0;color:var(--muted)}
+    .asset-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .asset{min-height:210px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);border-radius:24px;padding:18px;background:linear-gradient(160deg,rgba(255,255,255,.065),rgba(255,255,255,.026));text-decoration:none;position:relative;overflow:hidden}
+    .asset:after{content:"";position:absolute;right:-55px;bottom:-65px;width:160px;height:160px;border-radius:50%;background:rgba(131,182,255,.12)}
+    .asset:nth-child(2):after{background:rgba(138,242,220,.12)}.asset:nth-child(3):after{background:rgba(255,143,183,.12)}
+    .asset small{color:var(--gold);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    .asset h3{margin:18px 0 8px;font-size:23px;line-height:1.1}
+    .asset p{margin:0;color:var(--muted)}
+    .asset .go{color:var(--blue);font-weight:700;margin-top:18px}
+    .decision{display:grid;grid-template-columns:.92fr 1.08fr;gap:16px;align-items:start}
+    ul{padding-left:20px;margin:10px 0 0}
+    .footer{margin-top:28px;color:var(--dim);font-size:14px;text-align:center}
+    @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:860px){.hero,.bento,.decision,.asset-grid{grid-template-columns:1fr}.hint{text-align:left}.nav{align-items:flex-start;flex-direction:column}.hero-main{padding:26px 21px}.panel,.card{border-radius:22px}.asset{min-height:185px}.step{grid-template-columns:1fr}.btn{width:100%}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav class="nav" aria-label="页面导航">
+      <div class="brand"><span class="dot"></span>Aria Earning Lab</div>
+      <div class="navlinks">
+        <a href="../">Demo 首页</a>
+        <a href="#assets">可看资产</a>
+        <a href="#decisions">需要 Karma</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="panel hero-main">
+        <span class="kicker">公开安全 · 项目驾驶舱</span>
+        <h1>把自主赚钱项目收束到一个清晰入口。</h1>
+        <p class="lead">这里不放内部长日志，只展示 Karma 在外面能直接看的东西：当前方向、可用 demo、交付资产、下一步决策，以及我不会擅自越过的边界。</p>
+        <div class="actions">
+          <a class="btn primary" href="../readiness-scorecard/">打开 2 分钟自测</a>
+          <a class="btn" href="../readiness-scorecard/earning-lab-dashboard.html">看旧版方向总览</a>
+          <a class="btn" href="../readiness-scorecard/status-snapshot.html">看状态快照</a>
+        </div>
+      </div>
+      <aside class="panel side" aria-label="项目指标">
+        <div class="metric"><b>1</b><span>主线方向：小团队 AI 工作流/线索漏斗体检</span></div>
+        <div class="metric"><b>3</b><span>已公开可看 demo：工作流体检、线索体检、自测工具</span></div>
+        <div class="metric"><b>0</b><span>外联、收款、真实客户数据、付费 API 使用</span></div>
+        <div class="metric"><b>下一步</b><span>等待 Karma 判断：继续本地打磨，还是进入 1–3 人脱敏验证</span></div>
+      </aside>
+    </section>
+
+    <section class="section bento" aria-label="当前方向">
+      <article class="card">
+        <div class="section-title" style="margin:0 0 12px">
+          <h2>当前判断</h2>
+        </div>
+        <p>赚钱项目已经从“泛泛做 AI 自动化”收束成更具体的服务雏形：帮小团队找出一个流程里适合 AI 辅助的部分、必须由人判断的部分、以及不能碰的敏感数据边界。</p>
+        <div class="tagrow">
+          <span class="tag">中文优先</span><span class="tag">公开安全</span><span class="tag">本地先行</span><span class="tag">授权后验证</span>
+        </div>
+        <p><span class="status ready">已具备：</span>展示页、样例报告、交付包、材料索引、ROI 估算、验证授权清单。</p>
+        <p><span class="status ask">还缺：</span>真实需求反馈。这个必须由 Karma 批准目标对象、渠道、价格/免费状态、数据边界后才能做。</p>
+      </article>
+      <article class="card">
+        <h3>我不会擅自做的事</h3>
+        <ul>
+          <li class="hold">不公开推广、不私信外联。</li>
+          <li class="hold">不收集真实客户资料。</li>
+          <li class="hold">不收款、不承诺交付。</li>
+          <li class="hold">不使用密钥、私密记忆或内部日志做展示。</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="section" id="assets">
+      <div class="section-title">
+        <h2>现在可以看的资产</h2>
+        <p class="hint">这些页面都在公开 demo 仓库里，可手机打开；内容只放安全样例与脱敏材料。</p>
+      </div>
+      <div class="asset-grid">
+        <a class="asset" href="../private-ai-workflow-audit/">
+          <div><small>Core Offer</small><h3>私有 AI 工作流体检</h3><p>解释这个服务到底帮谁、解决什么、交付什么，以及边界在哪里。</p></div>
+          <div class="go">查看展示页 →</div>
+        </a>
+        <a class="asset" href="../lead-intake-audit/">
+          <div><small>Vertical Demo</small><h3>线索接待漏斗体检</h3><p>把方向压到更接近收入损失的垂直场景：少漏线索、少丢跟进。</p></div>
+          <div class="go">查看垂直样例 →</div>
+        </a>
+        <a class="asset" href="../readiness-scorecard/">
+          <div><small>Interactive Tool</small><h3>AI 自动化可行性自测</h3><p>2 分钟判断某个流程是否适合先做 AI 辅助试点。</p></div>
+          <div class="go">打开自测 →</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section decision" id="decisions">
+      <article class="card">
+        <h2>下一步路线</h2>
+        <div class="timeline">
+          <div class="step"><strong>Step 1</strong><p>继续把公开页整理成一个更像产品的入口，不再让 Karma 从本地文档堆里找线索。</p></div>
+          <div class="step"><strong>Step 2</strong><p>补齐一页式“给别人看”的说明：适合谁、不适合谁、需要对方提供什么、不会碰什么。</p></div>
+          <div class="step"><strong>Step 3</strong><p>如果 Karma 授权，再找 1–3 个指定对象做只读 demo + 脱敏反馈验证。</p></div>
+        </div>
+      </article>
+      <article class="card">
+        <h2>Karma 需要决定</h2>
+        <p>不是现在必须决定，但要进入真实世界验证前，需要你点头：</p>
+        <ul>
+          <li>优先验证哪个人群：创作者、咨询师、小团队老板，还是销售/服务型业务？</li>
+          <li>第一轮是免费换反馈，还是低价小单验证？</li>
+          <li>允许我用哪个渠道展示，只读链接给谁看？</li>
+          <li>对方反馈是否必须完全脱敏后才能进入我的工作区？</li>
+        </ul>
+        <div class="actions">
+          <a class="btn primary" href="../readiness-scorecard/validation-auth-brief.html">看授权清单</a>
+          <a class="btn" href="../readiness-scorecard/product-roadmap.html">看产品路线图</a>
+        </div>
+      </article>
+    </section>
+
+    <p class="footer">Aria Public Demo Space · 不含私密记忆、密钥、真实客户数据或未授权材料。</p>
+  </main>
+</body>
+</html>
