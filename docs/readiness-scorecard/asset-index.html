@@ -1,3 +1,155 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>销售线索 AI 体检材料索引｜Aria Demo</title><style>
-:root{--bg:#0d1020;--card:#151b30;--text:#f5f7ff;--muted:#b8c2d8;--gold:#f3cf7a;--green:#9de7bd;--cyan:#88d8ff;--line:rgba(255,255,255,.13)}*{box-sizing:border-box}body{margin:0;font-family:"PingFang SC","Noto Sans CJK SC",system-ui,sans-serif;background:radial-gradient(circle at 8% 0,#263e7a 0,transparent 32%),radial-gradient(circle at 100% 18%,#2d5a4a 0,transparent 30%),var(--bg);color:var(--text);line-height:1.72}.wrap{width:min(980px,calc(100% - 28px));margin:auto;padding:30px 0 56px}.pill{display:inline-flex;padding:7px 11px;border:1px solid var(--line);border-radius:999px;color:var(--gold);font-size:12px;letter-spacing:.08em}h1{font-size:clamp(34px,9vw,60px);line-height:1.06;margin:17px 0 12px;letter-spacing:-.04em}h2{margin:0 0 10px}p{color:var(--muted);font-size:17px}.big{font-size:20px;color:var(--text)}.card{background:rgba(21,27,48,.84);border:1px solid var(--line);border-radius:22px;padding:20px;margin:14px 0}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.item{padding:16px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.045)}.item b{display:block;color:var(--text);margin-bottom:6px}.tag{display:inline-flex;margin-top:8px;padding:4px 8px;border-radius:999px;background:rgba(136,216,255,.1);color:var(--cyan);font-size:12px;font-weight:800}.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}.btn{display:inline-flex;padding:10px 12px;border-radius:12px;text-decoration:none;font-weight:800;border:1px solid var(--line);color:var(--text);background:rgba(255,255,255,.06)}.btn.primary{background:linear-gradient(135deg,var(--gold),#fff0bd);color:#201300;border:0}.ok{color:var(--green)}.note{font-size:14px}@media(max-width:760px){.grid{grid-template-columns:1fr}.card{padding:17px;border-radius:18px}.btn{width:100%;justify-content:center}p{font-size:16px}}</style></head><body><main class="wrap"><span class="pill">材料索引 · 给 Karma 快速审阅</span><h1>销售线索 AI 体检材料索引</h1><p class="big">把目前可看的页面、可交付材料、授权/反馈工具集中到一个入口，减少找链接的成本。</p><p>这是整理页，不发布推广、不收集信息、不代表对外销售。</p><section class="card"><h2>推荐审阅顺序</h2><div class="grid"><article class="item"><b>1. 产品化路线图</b><p>先看完整漏斗：入口、筛选、垂直包装、交付、验证。</p><div class="btns"><a class="btn primary" href="./one-page-review.html">先看一页摘要</a><a class="btn" href="./status-snapshot.html">看状态快照</a><a class="btn primary" href="./product-roadmap.html">打开</a></div><span class="tag">总览</span></article><article class="item"><b>2. 可打印交付包</b><p>看客户实际会买到什么、要提供什么、怎么验收。</p><div class="btns"><a class="btn primary" href="./lead-followup-delivery-pack.html">打开</a><a class="btn" href="./downloads/lead-followup-light-audit-delivery-pack.md">Markdown</a><a class="btn" href="./downloads/lead-followup-review-kit-readme.md">README</a><a class="btn" href="./downloads/lead-followup-review-kit.zip">ZIP</a></div><span class="tag">交付</span></article><article class="item"><b>3. ROI 粗算器</b><p>用 4 个数判断某个流程值不值得体检/试点。</p><div class="btns"><a class="btn primary" href="./roi-calculator.html">打开</a></div><span class="tag">筛选</span></article><article class="item"><b>4. 销售线索样例</b><p>看一周 MVP、人工边界和虚构输出片段。</p><div class="btns"><a class="btn primary" href="./lead-followup-sample.html">打开</a></div><span class="tag">样例</span></article></div></section><section class="card"><h2>验证准备材料</h2><div class="grid"><article class="item"><b>授权清单</b><p>哪些动作需要 Karma 批准，哪些仍然禁止。</p><div class="btns"><a class="btn" href="./validation-auth-brief.html">打开</a></div></article><article class="item"><b>邀请文案草稿</b><p>熟人反馈、小团队老板/运营、公开帖短版；未授权不发送。</p><div class="btns"><a class="btn" href="./outreach-drafts.html">打开</a></div></article><article class="item"><b>反馈记录模板</b><p>记录反馈、评分、停止规则，判断是否有付费潜力。</p><div class="btns"><a class="btn" href="./feedback-log-template.html">打开</a></div></article><article class="item"><b>隐私边界</b><p>未来表单只收最少信息，明确不收敏感数据。</p><div class="btns"><a class="btn" href="./intake-spec.html">打开</a></div></article></div></section><section class="card"><h2>当前状态</h2><p class="ok">材料已足够支持 Karma 做一次集中审阅；是否进入真实验证，仍需明确授权。</p><p class="note">本页只是索引，方便后续从“散点页面”转为“项目包”。</p></section></main></body></html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>销售线索 AI 体检材料索引｜Aria Demo</title>
+  <style>
+    :root{
+      --bg:#090d1a;
+      --bg2:#0f1729;
+      --panel:rgba(16,23,41,.78);
+      --panel2:rgba(255,255,255,.055);
+      --text:#f7f4ea;
+      --muted:#aeb9ca;
+      --soft:#d8dfeb;
+      --gold:#f0c979;
+      --mint:#9fe6c2;
+      --cyan:#8ad8ff;
+      --line:rgba(255,255,255,.13);
+      --shadow:0 28px 80px rgba(0,0,0,.38);
+      --radius:28px;
+      --section:clamp(68px,9vw,118px);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"PingFang SC","Noto Sans CJK SC",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 12% 4%,rgba(72,107,190,.46) 0,transparent 34%),
+        radial-gradient(circle at 92% 12%,rgba(83,159,126,.26) 0,transparent 31%),
+        linear-gradient(180deg,var(--bg),var(--bg2) 58%,#0a0d16);
+      line-height:1.72;
+    }
+    a{color:inherit}
+    .wrap{width:min(1120px,calc(100% - 40px));margin:auto;padding:34px 0 72px}
+    .nav{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:clamp(54px,8vw,92px)}
+    .brand{display:flex;align-items:center;gap:10px;color:var(--soft);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+    .brand::before{content:"";width:10px;height:10px;border-radius:99px;background:linear-gradient(135deg,var(--gold),var(--mint));box-shadow:0 0 28px rgba(240,201,121,.65)}
+    .nav a{color:var(--muted);text-decoration:none;font-size:14px;border-bottom:1px solid transparent}
+    .nav a:hover{color:var(--text);border-color:rgba(240,201,121,.5)}
+    .hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:clamp(28px,5vw,64px);align-items:end;margin-bottom:var(--section)}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:var(--gold);background:rgba(255,255,255,.045);font-size:12px;font-weight:800;letter-spacing:.08em}
+    h1{margin:20px 0 18px;font-size:clamp(48px,7.4vw,88px);line-height:.96;letter-spacing:-.065em;text-wrap:balance;word-break:keep-all;overflow-wrap:normal}
+    .phrase{display:inline-block;white-space:nowrap}.headline-break{display:block}
+    .lead{max-width:760px;margin:0;color:var(--soft);font-size:clamp(19px,2.2vw,24px);line-height:1.62}
+    .sublead{max-width:700px;margin:18px 0 0;color:var(--muted);font-size:16px}
+    .hero-card{position:relative;padding:26px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(145deg,rgba(255,255,255,.105),rgba(255,255,255,.04));box-shadow:var(--shadow);overflow:hidden}
+    .hero-card::before{content:"";position:absolute;inset:-1px;background:radial-gradient(circle at 20% 10%,rgba(240,201,121,.22),transparent 35%);pointer-events:none}
+    .hero-card>*{position:relative}.metric{display:grid;gap:16px}.metric-row{display:flex;justify-content:space-between;gap:18px;padding-bottom:15px;border-bottom:1px solid var(--line)}.metric-row:last-child{border-bottom:0;padding-bottom:0}.metric b{display:block;font-size:25px;line-height:1;color:var(--text)}.metric span{display:block;margin-top:6px;color:var(--muted);font-size:13px}.status{margin-top:22px;padding:15px 16px;border-radius:18px;background:rgba(159,230,194,.1);color:#dfffee;border:1px solid rgba(159,230,194,.22);font-size:14px}
+    section{margin-top:var(--section)}
+    .section-head{display:grid;grid-template-columns:minmax(0,.72fr) minmax(280px,.28fr);gap:24px;align-items:end;margin-bottom:24px}
+    h2{margin:0;font-size:clamp(28px,4vw,44px);line-height:1.08;letter-spacing:-.045em;text-wrap:balance}.section-head p{margin:0;color:var(--muted)}
+    .journey{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.feature,.side-card,.tile{border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(18px);box-shadow:0 18px 60px rgba(0,0,0,.18)}
+    .feature{padding:30px;border-radius:var(--radius);min-height:360px;display:flex;flex-direction:column;justify-content:space-between}.kicker{color:var(--gold);font-weight:900;font-size:13px;letter-spacing:.1em}.feature h3{font-size:clamp(30px,4.4vw,54px);line-height:1.04;letter-spacing:-.055em;margin:18px 0 12px}.feature p,.tile p,.side-card p{color:var(--muted);margin:0}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:11px 15px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.055);text-decoration:none;font-weight:850;color:var(--text)}.btn.primary{border:0;background:linear-gradient(135deg,var(--gold),#fff1be);color:#241700}.btn:hover{transform:translateY(-1px)}
+    .side{display:grid;gap:18px}.side-card{border-radius:24px;padding:22px}.side-card h3,.tile h3{margin:0 0 8px;font-size:21px;line-height:1.2}.tag{display:inline-flex;margin-top:15px;padding:5px 9px;border-radius:99px;background:rgba(138,216,255,.11);color:var(--cyan);font-size:12px;font-weight:900}
+    .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.tile{border-radius:24px;padding:21px;min-height:220px;display:flex;flex-direction:column;justify-content:space-between}.tile .num{color:var(--gold);font-size:13px;font-weight:900;letter-spacing:.12em}.tile a{margin-top:20px;color:var(--text);text-decoration:none;font-weight:900}.tile a::after{content:" →";color:var(--gold)}
+    .review{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.review .tile{min-height:190px;background:var(--panel2)}
+    .note{padding:24px;border-radius:24px;border:1px solid rgba(240,201,121,.24);background:linear-gradient(135deg,rgba(240,201,121,.12),rgba(159,230,194,.07));color:var(--soft)}
+    .note strong{color:var(--text)}
+    @media(max-width:900px){.hero,.journey,.section-head{grid-template-columns:1fr}.tiles,.review{grid-template-columns:repeat(2,1fr)}.hero-card{max-width:640px}.section-head{align-items:start}}
+    @media(max-width:560px){.wrap{width:min(100% - 28px,1120px);padding-top:24px}.nav{align-items:flex-start;margin-bottom:46px}.nav a{display:none}h1{font-size:clamp(40px,13.5vw,62px);line-height:1;letter-spacing:-.055em}.phrase{white-space:normal}.headline-break{display:inline}.lead{font-size:18px}.hero-card,.feature{padding:21px;border-radius:22px}.tiles,.review{grid-template-columns:1fr}.tile{min-height:auto}.actions{flex-direction:column}.btn{width:100%}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav class="nav" aria-label="页面导航">
+      <div class="brand">Aria Demo · Lead Follow-up Audit</div>
+      <a href="../">返回公开 Demo 首页</a>
+    </nav>
+
+    <header class="hero">
+      <div>
+        <span class="eyebrow">材料索引 · 公开安全版</span>
+        <h1><span class="phrase">销售线索</span><span class="headline-break"></span><span class="phrase">AI 体检材料索引</span></h1>
+        <p class="lead">把路线图、交付包、ROI 粗算器、样例与验证边界整理成一条审阅路径：先判断方向，再看交付，再决定是否进入真实验证。</p>
+        <p class="sublead">本页不收集表单、不对外承诺销售、不包含真实客户数据；它只是给 Karma 和公开读者快速理解这个 demo 包的入口。</p>
+      </div>
+      <aside class="hero-card" aria-label="当前材料状态">
+        <div class="metric">
+          <div class="metric-row"><div><b>4 步</b><span>推荐审阅顺序</span></div><div><b>7 件</b><span>验证准备材料</span></div></div>
+          <div class="metric-row"><div><b>0</b><span>表单收集</span></div><div><b>公开</b><span>仅展示虚构/通用材料</span></div></div>
+        </div>
+        <div class="status">当前材料足够支持一次集中审阅；是否进入真实验证，仍需 Karma 明确授权。</div>
+      </aside>
+    </header>
+
+    <section aria-labelledby="path-title">
+      <div class="section-head">
+        <h2 id="path-title">先看这一条主线</h2>
+        <p>旧版索引把所有链接平铺在一起；新版按“理解 → 评估 → 交付 → 样例”组织，降低第一眼的选择成本。</p>
+      </div>
+      <div class="journey">
+        <article class="feature">
+          <div>
+            <div class="kicker">01 · ORIENTATION</div>
+            <h3>先用一页摘要建立全局判断</h3>
+            <p>一页摘要适合快速看清这个方向为什么存在、它解决哪类线索跟进漏点，以及目前还缺哪些真实验证。</p>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="./one-page-review.html">打开一页摘要</a>
+            <a class="btn" href="./status-snapshot.html">查看状态快照</a>
+            <a class="btn" href="./product-roadmap.html">看产品化路线图</a>
+          </div>
+        </article>
+        <div class="side">
+          <article class="side-card">
+            <h3>02 · ROI 粗算</h3>
+            <p>用几个简单数字判断：这类流程是否值得做体检，还是应该先修基础记录。</p>
+            <div class="actions"><a class="btn primary" href="./roi-calculator.html">打开 ROI 粗算器</a></div>
+            <span class="tag">筛选工具</span>
+          </article>
+          <article class="side-card">
+            <h3>03 · 可交付材料</h3>
+            <p>看客户实际会收到什么、需要提供什么、怎么验收，以及哪些动作必须保持人工复核。</p>
+            <div class="actions"><a class="btn primary" href="./lead-followup-delivery-pack.html">打开交付包</a><a class="btn" href="./downloads/lead-followup-light-audit-delivery-pack.md">Markdown</a></div>
+            <span class="tag">交付预览</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="sample-title">
+      <div class="section-head">
+        <h2 id="sample-title">再看样例与可下载材料</h2>
+        <p>这些页面用于补充判断，不需要全部一次看完。优先级从左到右。</p>
+      </div>
+      <div class="tiles">
+        <article class="tile"><div><div class="num">04</div><h3>销售线索样例</h3><p>一周 MVP、人工边界和虚构输出片段。</p></div><a href="./lead-followup-sample.html">打开样例</a></article>
+        <article class="tile"><div><div class="num">KIT</div><h3>交付包 ZIP</h3><p>便于本地留档或一次性下载审阅。</p></div><a href="./downloads/lead-followup-review-kit.zip">下载 ZIP</a></article>
+        <article class="tile"><div><div class="num">README</div><h3>使用说明</h3><p>解释交付包里的文件结构与审阅方式。</p></div><a href="./downloads/lead-followup-review-kit-readme.md">打开 README</a></article>
+        <article class="tile"><div><div class="num">TEMPLATE</div><h3>体检模板</h3><p>从样例转向真实项目时的轻量交付结构。</p></div><a href="./lead-followup-audit-template.html">打开模板</a></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="validation-title">
+      <div class="section-head">
+        <h2 id="validation-title">验证前的边界材料</h2>
+        <p>如果之后进入真实反馈，先确认授权、隐私、记录和停止规则。</p>
+      </div>
+      <div class="review">
+        <article class="tile"><div><h3>授权清单</h3><p>哪些动作需要 Karma 批准，哪些仍然禁止。</p></div><a href="./validation-auth-brief.html">打开</a></article>
+        <article class="tile"><div><h3>邀请文案草稿</h3><p>熟人反馈、小团队老板/运营、公开帖短版；未授权不发送。</p></div><a href="./outreach-drafts.html">打开</a></article>
+        <article class="tile"><div><h3>反馈记录模板</h3><p>记录反馈、评分和停止规则，判断是否有付费潜力。</p></div><a href="./feedback-log-template.html">打开</a></article>
+        <article class="tile"><div><h3>隐私边界</h3><p>未来表单只收最少信息，明确不收敏感数据。</p></div><a href="./intake-spec.html">打开</a></article>
+      </div>
+    </section>
+
+    <section class="note" aria-label="公开安全说明">
+      <strong>公开安全说明：</strong>本页只是公开 demo 的策展索引，不登录、不收集、不外联；所有业务内容都是通用说明或虚构样例，不包含私密记忆、API key、内部日志或真实客户数据。
+    </section>
+  </main>
+</body>
+</html>
