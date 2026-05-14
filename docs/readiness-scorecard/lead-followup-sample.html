@@ -1,17 +1,606 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>销售线索跟进 AI 试点样例｜Aria Demo</title><style>
-:root{--bg:#0d1020;--card:#151b30;--text:#f5f7ff;--muted:#b8c2d8;--gold:#f3cf7a;--green:#9de7bd;--cyan:#88d8ff;--line:rgba(255,255,255,.13)}*{box-sizing:border-box}body{margin:0;font-family:"PingFang SC","Noto Sans CJK SC",system-ui,sans-serif;background:radial-gradient(circle at 8% 0,#263e7a 0,transparent 32%),radial-gradient(circle at 100% 18%,#2d5a4a 0,transparent 30%),var(--bg);color:var(--text);line-height:1.72}.wrap{width:min(920px,calc(100% - 28px));margin:auto;padding:30px 0 56px}.pill{display:inline-flex;padding:7px 11px;border:1px solid var(--line);border-radius:999px;color:var(--gold);font-size:12px;letter-spacing:.08em}h1{font-size:clamp(34px,9vw,60px);line-height:1.06;margin:17px 0 12px;letter-spacing:-.04em}h2{margin:0 0 10px}p,li{color:var(--muted);font-size:17px}.big{font-size:20px;color:var(--text)}.card{background:rgba(21,27,48,.84);border:1px solid var(--line);border-radius:22px;padding:20px;margin:14px 0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.box{padding:15px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.045)}.box b{color:var(--text)}.tag{display:inline-flex;margin:3px 5px 3px 0;padding:5px 9px;border-radius:999px;background:rgba(136,216,255,.1);color:var(--cyan);font-size:13px;font-weight:800}.flow{counter-reset:step}.step{position:relative;padding-left:44px}.step:before{counter-increment:step;content:counter(step);position:absolute;left:0;top:18px;width:28px;height:28px;border-radius:50%;background:var(--gold);color:#201300;font-weight:900;display:grid;place-items:center}.quote{white-space:pre-wrap;border:1px dashed rgba(243,207,122,.5);border-radius:16px;padding:16px;background:rgba(243,207,122,.07);color:#fff4d0}.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.btn{display:inline-flex;padding:12px 14px;border-radius:14px;text-decoration:none;font-weight:800;border:1px solid var(--line);color:var(--text);background:rgba(255,255,255,.06)}.btn.primary{background:linear-gradient(135deg,var(--gold),#fff0bd);color:#201300;border:0}.note{font-size:14px}.good{color:var(--green)}@media(max-width:700px){.grid{grid-template-columns:1fr}.card{padding:17px;border-radius:18px}.btn{width:100%;justify-content:center}p,li{font-size:16px}}
-</style></head><body><main class="wrap"><span class="pill">垂直样例 · 虚构数据</span><h1>销售线索跟进 AI 试点样例</h1><p class="big">目标：让小团队少漏掉咨询线索，并把“下一步该怎么回”变得更稳定。</p><p>这是一个公开安全的虚构样例，用来展示 Aria 的体检/试点服务会怎么拆解问题；不包含真实客户数据。</p><div class="btns"><a class="btn" href="./roi-calculator.html">回 ROI 粗算器</a><a class="btn" href="./pilot-brief.html">看试点申请清单</a><a class="btn" href="./lead-followup-audit-template.html">看轻量体检模板</a><a class="btn primary" href="#mvp">看 MVP 方案</a></div>
-<section class="card"><h2>适合谁？</h2><p><span class="tag">咨询服务</span><span class="tag">课程/社群</span><span class="tag">B2B 服务商</span><span class="tag">高客单成交</span></p><div class="grid"><div class="box"><b>典型痛点</b><p>有人填表、加微信、留言咨询，但跟进慢、记录散、下一步不清楚，最后线索冷掉。</p></div><div class="box"><b>为什么有商业价值</b><p>少漏一个高意向客户，价值往往就超过一次轻量体检；且流程边界容易人工复核。</p></div></div></section>
-<section class="card flow"><h2>体检会看 4 个环节</h2><div class="step box"><b>线索进入</b><p>来源、渠道、时间、客户说了什么，是否被统一记录。</p></div><div class="step box"><b>首次响应</b><p>多久回复，是否问到关键判断信息，是否有下一步安排。</p></div><div class="step box"><b>跟进节奏</b><p>是否有提醒，是否知道谁该跟，是否有阶段标签。</p></div><div class="step box"><b>复盘转化</b><p>哪些线索成了，哪些丢了，原因是否能回到流程改善。</p></div></section>
-<section class="card" id="mvp"><h2>一周 MVP 方案</h2><div class="grid"><div class="box"><b>AI 可以先做</b><ul><li>把线索摘要成 3 行</li><li>判断紧急程度和意向强弱</li><li>生成下一步跟进草稿</li><li>提醒缺失的关键信息</li></ul></div><div class="box"><b>人必须保留</b><ul><li>是否承诺价格/交付</li><li>是否接受客户</li><li>最终发送消息</li><li>处理敏感或争议内容</li></ul></div></div></section>
-<section class="card"><h2>示例输出片段</h2><div class="quote">线索摘要：客户想了解企业内训，预算和时间未确认，已表达“本月想定方案”。
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>销售线索跟进 AI 试点样例｜Aria Demo</title>
+  <style>
+    :root {
+      --bg: #08111f;
+      --panel: rgba(13, 25, 44, .78);
+      --panel-strong: rgba(17, 32, 55, .92);
+      --text: #f7f2e8;
+      --muted: #b8c5d7;
+      --soft: #8796aa;
+      --gold: #f2cf7a;
+      --gold-2: #ffe7a8;
+      --mint: #9de7bd;
+      --cyan: #88d8ff;
+      --danger: #ffad9d;
+      --line: rgba(255, 255, 255, .13);
+      --shadow: 0 28px 90px rgba(0, 0, 0, .34);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --space-section: clamp(58px, 8vw, 110px);
+    }
 
-风险提醒：还缺决策人、人数、预算区间；不要直接承诺报价。
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "PingFang SC", "Noto Sans CJK SC", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% -10%, rgba(48, 90, 160, .72), transparent 34%),
+        radial-gradient(circle at 92% 8%, rgba(62, 118, 95, .58), transparent 30%),
+        linear-gradient(180deg, #07101e 0%, #0b1423 48%, #090f1b 100%);
+      line-height: 1.72;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.72), transparent 72%);
+    }
+
+    a { color: inherit; }
+
+    .wrap {
+      position: relative;
+      width: min(1120px, calc(100% - 40px));
+      margin: auto;
+      padding: 34px 0 72px;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: clamp(54px, 8vw, 96px);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav a { text-decoration: none; }
+
+    .crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gold);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .crumb::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--mint);
+      box-shadow: 0 0 22px rgba(157, 231, 189, .85);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) 360px;
+      gap: clamp(26px, 5vw, 70px);
+      align-items: end;
+      min-height: 58vh;
+      padding-bottom: var(--space-section);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      padding: 8px 12px;
+      border: 1px solid rgba(242, 207, 122, .34);
+      border-radius: 999px;
+      color: var(--gold-2);
+      background: rgba(242, 207, 122, .08);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 820px;
+      margin-bottom: 22px;
+      font-size: clamp(48px, 7.4vw, 96px);
+      line-height: .95;
+      letter-spacing: -.065em;
+      text-wrap: balance;
+      word-break: keep-all;
+      overflow-wrap: normal;
+    }
+
+    .phrase { display: inline-block; white-space: nowrap; }
+    .headline-break { display: block; }
+
+    .lead {
+      max-width: 720px;
+      margin-bottom: 0;
+      color: #dbe6f4;
+      font-size: clamp(19px, 2.1vw, 25px);
+      line-height: 1.62;
+    }
+
+    .hero-card {
+      position: relative;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.045));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -70px -50px auto auto;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: rgba(136, 216, 255, .22);
+      filter: blur(4px);
+    }
+
+    .score {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+
+    .score b {
+      display: block;
+      font-size: 13px;
+      color: var(--soft);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .score strong {
+      display: block;
+      color: var(--gold);
+      font-size: 54px;
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+
+    .meter {
+      height: 9px;
+      margin: 12px 0 4px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.1);
+      overflow: hidden;
+    }
+
+    .meter span {
+      display: block;
+      width: 72%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--mint), var(--gold));
+    }
+
+    .facts {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .facts li {
+      display: flex;
+      gap: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+
+    .facts li::before { content: "✦"; color: var(--gold); }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 13px 17px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--text);
+      background: rgba(255,255,255,.06);
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    .btn.primary {
+      border: 0;
+      color: #201300;
+      background: linear-gradient(135deg, var(--gold), #fff1bd);
+      box-shadow: 0 18px 42px rgba(242, 207, 122, .18);
+    }
+
+    section { margin-top: var(--space-section); }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, .78fr) minmax(280px, .42fr);
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      margin-bottom: 0;
+      font-size: clamp(31px, 4.2vw, 58px);
+      line-height: 1.02;
+      letter-spacing: -.045em;
+      text-wrap: balance;
+      word-break: keep-all;
+    }
+
+    .section-note {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .grid { display: grid; gap: 16px; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid.four { grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 16px; }
+
+    .tile {
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.045);
+    }
+
+    .tile h3 {
+      margin-bottom: 10px;
+      color: #fff8e6;
+      font-size: 21px;
+      line-height: 1.28;
+    }
+
+    .tile p, .tile li {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .tile p:last-child, .tile ul:last-child { margin-bottom: 0; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+
+    .tag {
+      display: inline-flex;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(136, 216, 255, .1);
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: .72fr 1fr;
+      gap: 0;
+      overflow: hidden;
+    }
+
+    .timeline-aside {
+      padding: 30px;
+      background: linear-gradient(180deg, rgba(242,207,122,.16), rgba(157,231,189,.07));
+      border-right: 1px solid var(--line);
+    }
+
+    .timeline-aside strong {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--gold);
+      font-size: 48px;
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+
+    .steps { padding: 18px; }
+
+    .step {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 16px;
+      padding: 18px 8px;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+
+    .step:first-child { border-top: 0; }
+
+    .day {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      color: #201300;
+      background: var(--gold);
+      font-weight: 950;
+      line-height: 1.05;
+      text-align: center;
+    }
+
+    .step b { color: var(--text); }
+    .step p { margin-bottom: 0; color: var(--muted); }
+
+    .quote {
+      padding: clamp(24px, 4vw, 38px);
+      white-space: pre-wrap;
+      border-radius: var(--radius-xl);
+      border: 1px dashed rgba(242, 207, 122, .52);
+      background: linear-gradient(180deg, rgba(242,207,122,.1), rgba(255,255,255,.04));
+      color: #fff4d0;
+      font-size: clamp(16px, 1.7vw, 19px);
+      line-height: 1.8;
+    }
+
+    .metric {
+      display: flex;
+      min-height: 124px;
+      flex-direction: column;
+      justify-content: space-between;
+      border-color: rgba(157, 231, 189, .24);
+    }
+
+    .metric b {
+      color: var(--mint);
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .boundary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .safe { border-color: rgba(157, 231, 189, .26); }
+    .risk { border-color: rgba(255, 173, 157, .27); }
+    .safe h3 { color: var(--mint); }
+    .risk h3 { color: var(--danger); }
+
+    footer {
+      margin-top: var(--space-section);
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+      color: var(--soft);
+      font-size: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .wrap { width: min(100% - 28px, 680px); padding-top: 24px; }
+      .nav { align-items: flex-start; flex-direction: column; margin-bottom: 44px; }
+      .hero, .section-head, .timeline, .boundary { grid-template-columns: 1fr; }
+      .hero { min-height: auto; padding-bottom: 18px; }
+      .timeline-aside { border-right: 0; border-bottom: 1px solid var(--line); }
+      .grid.two, .grid.three, .grid.four { grid-template-columns: 1fr; }
+      h1 { font-size: clamp(42px, 13vw, 68px); line-height: .98; letter-spacing: -.052em; }
+      h2 { font-size: clamp(32px, 8.4vw, 48px); line-height: 1.06; }
+      .phrase { white-space: normal; }
+      .headline-break { display: inline; }
+      .actions { flex-direction: column; }
+      .btn { width: 100%; }
+      .tile { padding: 20px; border-radius: 20px; }
+      .step { grid-template-columns: 58px 1fr; gap: 12px; }
+      .day { width: 48px; height: 48px; border-radius: 16px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav class="nav" aria-label="页面导航">
+      <a class="crumb" href="./asset-index.html">Readiness Scorecard</a>
+      <a href="../index.html">Aria Demos</a>
+    </nav>
+
+    <header class="hero">
+      <div>
+        <span class="eyebrow">垂直试点样例 · 虚构数据 · 公开安全</span>
+        <h1><span class="phrase">销售线索跟进</span><span class="headline-break"></span><span class="phrase">AI 试点样例</span></h1>
+        <p class="lead">把散落在表单、私信和聊天里的咨询线索，整理成“谁该先回、缺什么信息、下一句怎么说”的低风险辅助流程。</p>
+        <div class="actions">
+          <a class="btn primary" href="#mvp">看一周 MVP</a>
+          <a class="btn" href="./lead-followup-audit-template.html">轻量体检模板</a>
+          <a class="btn" href="./lead-followup-delivery-pack.html">交付包</a>
+          <a class="btn" href="./roi-calculator.html">ROI 粗算器</a>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="样例摘要">
+        <div class="score">
+          <div>
+            <b>pilot fit</b>
+            <strong>72</strong>
+          </div>
+          <span>适合小范围试点</span>
+        </div>
+        <div class="meter" aria-hidden="true"><span></span></div>
+        <ul class="facts">
+          <li>高价值：少漏一个高意向咨询，价值常超过一次轻量体检。</li>
+          <li>低风险：AI 先做摘要、提醒和草稿；承诺与发送仍由人确认。</li>
+          <li>易验证：首次响应、遗漏跟进、整理耗时都能在一周内观察。</li>
+        </ul>
+      </aside>
+    </header>
+
+    <section aria-labelledby="fit-title">
+      <div class="section-head">
+        <h2 id="fit-title"><span class="phrase">这个样例</span><span class="headline-break"></span><span class="phrase">适合谁？</span></h2>
+        <p class="section-note">不是所有销售都该立刻自动化。这里优先选择“信息重复、价值较高、人工可复核”的跟进场景。</p>
+      </div>
+      <div class="grid two">
+        <article class="tile panel">
+          <h3>典型团队</h3>
+          <p>咨询服务、课程/社群、B2B 服务商、高客单成交团队。线索量不一定很大，但每条线索都值得认真判断。</p>
+          <div class="tags">
+            <span class="tag">表单咨询</span>
+            <span class="tag">微信/私信</span>
+            <span class="tag">预约沟通</span>
+            <span class="tag">多人协作</span>
+          </div>
+        </article>
+        <article class="tile panel">
+          <h3>最常见的漏点</h3>
+          <p>线索进来以后没有统一记录；首次回复只寒暄、不判断；跟进提醒靠记忆；最后不知道客户为什么冷掉。</p>
+          <div class="tags">
+            <span class="tag">响应慢</span>
+            <span class="tag">记录散</span>
+            <span class="tag">下一步不清楚</span>
+            <span class="tag">复盘困难</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="audit-title">
+      <div class="section-head">
+        <h2 id="audit-title"><span class="phrase">体检先看</span><span class="headline-break"></span><span class="phrase">4 个环节</span></h2>
+        <p class="section-note">先定位流程漏水点，再决定 AI 应该出现在哪里。这样比一上来做“全自动销售机器人”稳得多。</p>
+      </div>
+      <div class="grid four panel">
+        <article class="tile">
+          <h3>01｜线索进入</h3>
+          <p>来源、时间、客户原话、咨询主题，是否进入同一张可追踪清单。</p>
+        </article>
+        <article class="tile">
+          <h3>02｜首次响应</h3>
+          <p>多久回复，是否问到关键判断信息，是否给出明确下一步。</p>
+        </article>
+        <article class="tile">
+          <h3>03｜跟进节奏</h3>
+          <p>谁负责、何时跟、线索处于哪个阶段，是否有提醒机制。</p>
+        </article>
+        <article class="tile">
+          <h3>04｜复盘转化</h3>
+          <p>哪些成交、哪些流失、原因是否能回到话术和流程调整。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="mvp" aria-labelledby="mvp-title">
+      <div class="section-head">
+        <h2 id="mvp-title"><span class="phrase">一周 MVP</span><span class="headline-break"></span><span class="phrase">怎么跑</span></h2>
+        <p class="section-note">范围刻意收小：只选一种线索来源、一个负责人、一套人工复核规则。先验证节省时间和少漏跟进。</p>
+      </div>
+      <div class="timeline panel">
+        <aside class="timeline-aside">
+          <strong>7 天</strong>
+          <p>目标不是替代销售，而是建立一个可复核的“线索整理与下一步建议”小回路。</p>
+        </aside>
+        <div class="steps">
+          <div class="step"><div class="day">D1</div><div><b>脱敏样例与字段表</b><p>只使用虚构或已授权脱敏样例，定义线索来源、意向、预算、时间、下一步等字段。</p></div></div>
+          <div class="step"><div class="day">D2-3</div><div><b>摘要与风险提醒</b><p>让 AI 输出三行摘要、缺失信息、风险提醒；先不自动发送任何消息。</p></div></div>
+          <div class="step"><div class="day">D4-5</div><div><b>跟进草稿与人工审核</b><p>生成下一句回复建议，由负责人确认、修改、发送，并记录修改原因。</p></div></div>
+          <div class="step"><div class="day">D6-7</div><div><b>复盘指标与下一轮</b><p>比较响应时间、遗漏数、整理耗时和草稿可用率，决定是否扩大范围。</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="sample-title">
+      <div class="section-head">
+        <h2 id="sample-title"><span class="phrase">虚构输出</span><span class="headline-break"></span><span class="phrase">片段</span></h2>
+        <p class="section-note">下面不是自动外发文案，而是给负责人审核的工作底稿。</p>
+      </div>
+      <div class="quote">线索摘要：客户想了解企业内训，预算和时间未确认，已表达“本月想定方案”。
+
+风险提醒：还缺决策人、参与人数、预算区间；不要直接承诺报价或交付时间。
 
 建议下一步：先回复确认 3 个问题，并约 15 分钟需求澄清。
 
 跟进草稿：
-“收到，我先帮你确认一下是否适合。方便的话请告诉我：预计参与人数、本月希望落地的时间、以及你们更关注效率提升还是销售转化？我可以据此给你一个更贴近的方案方向。”</div></section>
-<section class="card"><h2>可量化指标</h2><div class="grid"><div class="box good">首次响应时间下降</div><div class="box good">遗漏跟进数减少</div><div class="box good">每条线索整理耗时下降</div><div class="box good">高意向线索识别更稳定</div></div><p class="note">正式试点前仍需脱敏样例、授权边界和人工审核机制。</p></section>
-</main></body></html>
+“收到，我先帮你确认一下是否适合。方便的话请告诉我：预计参与人数、本月希望落地的时间、以及你们更关注效率提升还是销售转化？我可以据此给你一个更贴近的方案方向。”</div>
+    </section>
+
+    <section aria-labelledby="metrics-title">
+      <div class="section-head">
+        <h2 id="metrics-title"><span class="phrase">怎么判断</span><span class="headline-break"></span><span class="phrase">值得继续？</span></h2>
+        <p class="section-note">MVP 结束时，只看少量能被人工确认的指标，避免陷入“看起来很智能”的幻觉。</p>
+      </div>
+      <div class="grid three">
+        <article class="tile panel metric"><b>↓</b><h3>首次响应时间</h3><p>高意向线索是否更快得到有效回复。</p></article>
+        <article class="tile panel metric"><b>↓</b><h3>遗漏跟进数</h3><p>是否减少“忘记回 / 不知道谁跟”的情况。</p></article>
+        <article class="tile panel metric"><b>↑</b><h3>草稿可用率</h3><p>AI 建议是否经少量修改即可使用。</p></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="boundary-title">
+      <div class="section-head">
+        <h2 id="boundary-title"><span class="phrase">AI 做辅助，</span><span class="headline-break"></span><span class="phrase">人保留判断</span></h2>
+        <p class="section-note">这也是公开 demo 的安全边界：不外联、不收集表单、不使用真实客户数据。</p>
+      </div>
+      <div class="boundary">
+        <article class="tile panel safe">
+          <h3>AI 可以先做</h3>
+          <ul>
+            <li>把线索摘要成 3 行</li>
+            <li>判断紧急程度和意向强弱</li>
+            <li>提醒缺失的关键信息</li>
+            <li>生成待审核跟进草稿</li>
+          </ul>
+        </article>
+        <article class="tile panel risk">
+          <h3>人必须保留</h3>
+          <ul>
+            <li>是否接受客户与承诺交付</li>
+            <li>价格、合同、法律或敏感判断</li>
+            <li>最终发送消息</li>
+            <li>处理争议、投诉或异常内容</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <p>公开安全说明：本页所有内容为虚构样例，仅用于展示 Aria Demo 的方法与页面表达；不包含真实客户数据、内部日志或私密记忆。</p>
+    </footer>
+  </main>
+</body>
+</html>
