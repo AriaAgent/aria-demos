@@ -1,1 +1,470 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>内容复用整理材料索引｜Aria Demo</title><style>:root{--bg:#0d1020;--card:#151b30;--text:#f5f7ff;--muted:#b8c2d8;--gold:#f3cf7a;--pink:#f5a3d7;--line:rgba(255,255,255,.13)}*{box-sizing:border-box}body{margin:0;font-family:"PingFang SC",system-ui,sans-serif;background:radial-gradient(circle at 8% 0,#263e7a 0,transparent 32%),radial-gradient(circle at 100% 18%,#61335c 0,transparent 30%),var(--bg);color:var(--text);line-height:1.72}.wrap{width:min(900px,calc(100% - 28px));margin:auto;padding:30px 0 56px}.pill{display:inline-flex;padding:7px 11px;border:1px solid var(--line);border-radius:999px;color:var(--gold);font-size:12px}h1{font-size:clamp(34px,9vw,58px);line-height:1.06;margin:17px 0 12px;letter-spacing:-.04em}h2{margin:0 0 10px}p{color:var(--muted);font-size:17px}.card{background:rgba(21,27,48,.84);border:1px solid var(--line);border-radius:22px;padding:20px;margin:14px 0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.item{padding:15px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.045)}.item b{color:var(--text)}.tag{display:inline-flex;margin-top:8px;padding:4px 8px;border-radius:999px;background:rgba(245,163,215,.1);color:var(--pink);font-size:12px;font-weight:800}.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}.btn{display:inline-flex;padding:10px 12px;border-radius:12px;text-decoration:none;font-weight:800;border:1px solid var(--line);color:var(--text);background:rgba(255,255,255,.06)}.btn.primary{background:linear-gradient(135deg,var(--gold),#fff0bd);color:#201300;border:0}@media(max-width:720px){.grid{grid-template-columns:1fr}.btn{width:100%;justify-content:center}}</style></head><body><main class="wrap"><span class="pill">P2 材料索引 · 不发布不外联</span><h1>内容复用整理材料索引</h1><p>把第二候选方向的样例、交付模板、Markdown 包和方向比较集中起来，方便后续评审。</p><section class="card"><h2>建议审阅顺序</h2><div class="grid"><div class="item"><b>1. 方向样例</b><p>看适合人群、体检环节、一周 MVP 和虚构输出。</p><div class="btns"><a class="btn primary" href="./content-repurposing-sample.html">打开</a></div><span class="tag">样例</span></div><div class="item"><b>2. 交付模板</b><p>看客户买到什么：内容盘点、平台矩阵、语气边界、MVP。</p><div class="btns"><a class="btn primary" href="./content-repurposing-audit-template.html">打开</a></div><span class="tag">交付</span></div><div class="item"><b>3. Markdown 离线包</b><p>可复制到飞书文档或客户版草稿中继续编辑。</p><div class="btns"><a class="btn primary" href="./downloads/content-repurposing-light-audit-delivery-pack.md">打开</a></div><span class="tag">离线</span></div><div class="item"><b>4. 方向优先级比较</b><p>看为什么短期 P1 仍是销售线索，内容复用保留为 P2。</p><div class="btns"><a class="btn primary" href="./vertical-priority-compare.html">打开</a></div><span class="tag">决策</span></div></div></section><section class="card"><h2>当前判断</h2><p>内容复用整理适合做中期内容资产和 Aria IP 协同方向；短期赚钱验证仍建议优先销售线索跟进。</p></section></main></body></html>
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>内容复用整理材料索引｜Aria Demo</title>
+    <style>
+      :root {
+        --bg: #0b1020;
+        --bg-soft: #111a31;
+        --panel: rgba(18, 27, 49, 0.78);
+        --panel-strong: rgba(246, 241, 225, 0.94);
+        --text: #f7f2e8;
+        --muted: #b9c4d6;
+        --ink: #192033;
+        --ink-muted: #667085;
+        --gold: #f0c66f;
+        --mint: #7ee0c3;
+        --rose: #ee8fc2;
+        --line: rgba(255, 255, 255, 0.13);
+        --line-warm: rgba(240, 198, 111, 0.35);
+        --shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+        --radius-lg: 32px;
+        --radius-md: 22px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "PingFang SC", "Hiragino Sans GB", system-ui, -apple-system,
+          BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background:
+          radial-gradient(circle at 10% -6%, rgba(80, 119, 220, 0.45), transparent 34%),
+          radial-gradient(circle at 95% 12%, rgba(238, 143, 194, 0.26), transparent 31%),
+          linear-gradient(145deg, #07101d 0%, var(--bg) 48%, #131126 100%);
+        color: var(--text);
+        line-height: 1.72;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .wrap {
+        width: min(1120px, calc(100% - 40px));
+        margin: auto;
+      }
+
+      .hero {
+        min-height: 72vh;
+        display: grid;
+        grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
+        gap: clamp(28px, 6vw, 72px);
+        align-items: center;
+        padding: clamp(72px, 10vw, 128px) 0 clamp(56px, 8vw, 96px);
+      }
+
+      .eyebrow,
+      .status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid var(--line-warm);
+        border-radius: 999px;
+        color: var(--gold);
+        background: rgba(240, 198, 111, 0.08);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        padding: 7px 12px;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 880px;
+        margin: 22px 0 24px;
+        font-size: clamp(46px, 7.6vw, 94px);
+        line-height: 0.96;
+        letter-spacing: -0.065em;
+        text-wrap: balance;
+        word-break: keep-all;
+        overflow-wrap: normal;
+      }
+
+      .phrase {
+        display: inline-block;
+        white-space: nowrap;
+      }
+
+      .headline-break {
+        display: block;
+      }
+
+      .lede {
+        max-width: 710px;
+        color: var(--muted);
+        font-size: clamp(17px, 2vw, 22px);
+      }
+
+      .hero-actions,
+      .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .btn {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 46px;
+        padding: 11px 16px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.06);
+        text-decoration: none;
+        font-weight: 850;
+      }
+
+      .btn.primary {
+        border-color: transparent;
+        color: #1d1607;
+        background: linear-gradient(135deg, var(--gold), #fff1bb);
+        box-shadow: 0 16px 44px rgba(240, 198, 111, 0.2);
+      }
+
+      .aside-card {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: linear-gradient(160deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.04));
+        box-shadow: var(--shadow);
+        padding: clamp(22px, 4vw, 34px);
+      }
+
+      .aside-card::before {
+        content: "";
+        position: absolute;
+        inset: -40% auto auto 42%;
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        background: rgba(126, 224, 195, 0.22);
+        filter: blur(26px);
+      }
+
+      .aside-card > * {
+        position: relative;
+      }
+
+      .meta-list {
+        display: grid;
+        gap: 16px;
+        margin: 24px 0 0;
+      }
+
+      .meta-item {
+        border-top: 1px solid var(--line);
+        padding-top: 14px;
+      }
+
+      .meta-item b {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--text);
+      }
+
+      .meta-item span,
+      .aside-card p {
+        color: var(--muted);
+      }
+
+      .section {
+        padding: clamp(64px, 8vw, 104px) 0;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(260px, 0.55fr);
+        gap: 28px;
+        align-items: end;
+        margin-bottom: 28px;
+      }
+
+      h2 {
+        font-size: clamp(30px, 4.6vw, 58px);
+        line-height: 1.03;
+        letter-spacing: -0.045em;
+        text-wrap: balance;
+      }
+
+      .section-head p,
+      .closing p {
+        color: var(--muted);
+        font-size: 18px;
+      }
+
+      .path-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .asset-card {
+        min-height: 320px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        background: var(--panel);
+        padding: 22px;
+      }
+
+      .asset-card.featured {
+        background: var(--panel-strong);
+        color: var(--ink);
+      }
+
+      .asset-card.featured p,
+      .asset-card.featured .number,
+      .asset-card.featured .small {
+        color: var(--ink-muted);
+      }
+
+      .number {
+        color: var(--gold);
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        font-size: 12px;
+      }
+
+      .asset-card h3 {
+        margin: 18px 0 10px;
+        font-size: 23px;
+        line-height: 1.18;
+        letter-spacing: -0.025em;
+      }
+
+      .asset-card p {
+        color: var(--muted);
+      }
+
+      .small {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .tag {
+        display: inline-flex;
+        border-radius: 999px;
+        padding: 5px 9px;
+        background: rgba(126, 224, 195, 0.12);
+        color: var(--mint);
+        font-size: 12px;
+        font-weight: 850;
+      }
+
+      .featured .tag {
+        background: rgba(20, 95, 79, 0.1);
+        color: #196b5a;
+      }
+
+      .closing {
+        display: grid;
+        grid-template-columns: minmax(0, 0.85fr) minmax(280px, 0.55fr);
+        gap: 20px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, 0.06);
+        padding: clamp(24px, 5vw, 42px);
+        margin-bottom: clamp(64px, 8vw, 100px);
+      }
+
+      .decision {
+        border-radius: 24px;
+        background: rgba(126, 224, 195, 0.1);
+        border: 1px solid rgba(126, 224, 195, 0.25);
+        padding: 20px;
+      }
+
+      .decision b {
+        color: var(--mint);
+      }
+
+      .decision p {
+        margin-bottom: 0;
+        font-size: 16px;
+      }
+
+      @media (max-width: 980px) {
+        .hero,
+        .section-head,
+        .closing {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          min-height: auto;
+        }
+
+        .path-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 620px) {
+        .wrap {
+          width: min(100% - 28px, 1120px);
+        }
+
+        .hero {
+          padding-top: 48px;
+        }
+
+        h1 {
+          font-size: clamp(42px, 13vw, 64px);
+          line-height: 0.98;
+          letter-spacing: -0.055em;
+        }
+
+        .phrase {
+          white-space: normal;
+        }
+
+        .headline-break {
+          display: inline;
+        }
+
+        .hero-actions,
+        .btn-row {
+          display: grid;
+        }
+
+        .path-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .asset-card {
+          min-height: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <span class="eyebrow">P2 方向材料索引 · 公开安全演示</span>
+          <h1 id="page-title">
+            <span class="phrase">内容复用整理</span><span class="headline-break"></span>
+            <span class="phrase">先做成一条</span><span class="phrase">可审阅路径</span>
+          </h1>
+          <p class="lede">
+            这页不是把所有文件堆在一起，而是把“样例 → 模板 → 离线包 → 方向判断”排成一条审阅路线。适合快速判断：内容资产整理是否值得成为 Aria Earning Lab 的第二条产品线。
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="./content-repurposing-sample.html">先看虚构样例</a>
+            <a class="btn" href="./content-repurposing-audit-template.html">查看交付模板</a>
+          </div>
+        </div>
+
+        <aside class="aside-card" aria-label="当前状态摘要">
+          <span class="status-pill">STATUS · CURATED INDEX</span>
+          <div class="meta-list">
+            <div class="meta-item">
+              <b>公开边界</b>
+              <span>仅使用虚构场景与公开说明；不收集表单、不外联、不含真实客户数据。</span>
+            </div>
+            <div class="meta-item">
+              <b>本轮定位</b>
+              <span>中期内容资产方向；短期赚钱验证仍以销售线索跟进为 P1。</span>
+            </div>
+            <div class="meta-item">
+              <b>推荐看法</b>
+              <span>先看输出样例是否清楚，再判断模板能否被小团队直接复用。</span>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section" aria-labelledby="review-path">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">REVIEW PATH</span>
+            <h2 id="review-path">四步读完，不在材料里迷路。</h2>
+          </div>
+          <p>
+            每个入口只承担一个任务：理解场景、确认交付、拿到离线包、回到优先级判断。这样后续要继续产品化时，也能知道该先补哪一环。
+          </p>
+        </div>
+
+        <div class="path-grid">
+          <article class="asset-card featured">
+            <div>
+              <span class="number">01 · SAMPLE</span>
+              <h3>方向样例</h3>
+              <p>看适合人群、体检环节、一周 MVP 和虚构输出，判断这个方向是否有第一眼价值。</p>
+              <div class="tag-row"><span class="tag">场景理解</span><span class="tag">虚构样例</span></div>
+            </div>
+            <div class="btn-row"><a class="btn primary" href="./content-repurposing-sample.html">打开样例</a></div>
+          </article>
+
+          <article class="asset-card">
+            <div>
+              <span class="number">02 · TEMPLATE</span>
+              <h3>交付模板</h3>
+              <p>确认客户实际买到什么：内容盘点、平台矩阵、语气边界、MVP 试点路径。</p>
+              <div class="tag-row"><span class="tag">交付结构</span><span class="tag">可复制</span></div>
+            </div>
+            <div class="btn-row"><a class="btn" href="./content-repurposing-audit-template.html">查看模板</a></div>
+          </article>
+
+          <article class="asset-card">
+            <div>
+              <span class="number">03 · OFFLINE PACK</span>
+              <h3>Markdown 离线包</h3>
+              <p>适合复制到飞书文档或客户草稿中继续编辑，保留轻量交付包的原始文本形态。</p>
+              <div class="tag-row"><span class="tag">离线编辑</span><span class="tag">Markdown</span></div>
+            </div>
+            <div class="btn-row"><a class="btn" href="./downloads/content-repurposing-light-audit-delivery-pack.md">打开离线包</a></div>
+          </article>
+
+          <article class="asset-card">
+            <div>
+              <span class="number">04 · DECISION</span>
+              <h3>方向优先级比较</h3>
+              <p>回到商业判断：为什么短期 P1 仍是销售线索，内容复用整理暂时保留为 P2。</p>
+              <div class="tag-row"><span class="tag">优先级</span><span class="tag">路线判断</span></div>
+            </div>
+            <div class="btn-row"><a class="btn" href="./vertical-priority-compare.html">查看比较</a></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="closing" aria-labelledby="current-decision">
+        <div>
+          <span class="eyebrow">CURRENT CALL</span>
+          <h2 id="current-decision">保留它，但不急着冲到第一线。</h2>
+          <p>
+            内容复用整理适合中期构建内容资产与 Aria IP 协同：它有审美表达空间，也能服务创作者和小团队。但如果目标是快速验证付费，销售线索跟进仍更靠近明确痛点和可量化结果。
+          </p>
+        </div>
+        <div class="decision">
+          <b>下一步建议</b>
+          <p>等 P1 销售线索页完成视觉 QA 后，再把内容复用方向升级为完整 landing page，而不是继续增加零散材料。</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
